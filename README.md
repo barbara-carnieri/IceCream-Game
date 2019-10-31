@@ -1,26 +1,29 @@
 # IceCream-Game
 
-Description
+## Description
 Brief description of the project
 
 ## MVP (DOM - CANVAS)
 MVP definition, deliverables.
 
 ## Backlog
-Data structure
-Classes and methods definition.
+<ul>
+  <li>Data structure</li>
+  <li>Classes and methods definition</li>
+</ul>
 
 ## States y States Transitions
 Definition of the different states and their transition (transition functions)
 ```
 splashScreen
 gameScreen
-gameoverScreen
-winScreen
-Task
-Task definition in order of priority
+gameoverScreen / winScreen
 ```
-Links
+
+## Task
+Task definition in order of priority
+
+## Links
 Trello
 Link url
 
