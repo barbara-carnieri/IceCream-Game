@@ -3,10 +3,10 @@
 Description
 Brief description of the project
 
-MVP (DOM - CANVAS)
+## MVP (DOM - CANVAS)
 MVP definition, deliverables.
 
-Backlog
+# Backlog
 Data structure
 Classes and methods definition.
 
