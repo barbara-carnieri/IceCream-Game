@@ -84,6 +84,20 @@ Balls.prototype.draw = function() {};
 Balls.prototype.updatePosition = function() {};
 Balls.prototype.isInsideScreen = function() {};
 ```
+## fireBall.js
+```
+FireBall() {
+  this.canvas;
+  this.ctx;
+  this.size;
+  this.x;
+  this.y;
+  this.speed;
+  }
+FireBall.prototype.draw = function() {};
+FireBall.prototype.updatePosition = function() {};
+FireBall.prototype.isInsideScreen = function() {};
+```
 
 ## States y States Transitions
 Definition of the different states and their transition (transition functions)
@@ -119,6 +133,13 @@ gameoverScreen / winScreen
 * Balls - drawCanvas
 * Balls - updatePosition
 * Balls - checkIsInsideScreen
+* Balls - increaseScore
+* FireBall - buildBalls
+* FireBall - drawCanvas
+* FireBall - updatePosition
+* FireBall - checkIsInsideScreen
+* FireBall - removesLife
+* FireBall - decreaseScore
 
 ## Links
 Trello
