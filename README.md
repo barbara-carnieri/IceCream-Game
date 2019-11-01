@@ -25,10 +25,10 @@ Task definition in order of priority
 
 ## Links
 Trello
-Link url
+<a href="https://trello.com/b/W7yrr1M3">Link url</a>
 
 ## Git
-URls for the project repo and deploy Link Repo Link Deploy
+URls for the project repo and deploy <a href="#">Link Repo</a> <a href="#">Link Deploy</a>
 
 ## Slides
 URls for the project presentation (slides) Link Slides.com
