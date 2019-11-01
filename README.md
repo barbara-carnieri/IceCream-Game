@@ -12,6 +12,50 @@ MVP definition, deliverables.
   <li>Classes and methods definition</li>
 </ul>
 
+## Data Structure
+## main.js
+```
+buildDom()
+CreateSplashScreen()
+createGameScreen()
+createGameOverScreen()
+```
+## game.js
+```
+this.player
+this.balls
+this.isGameOver
+this.checkLines()
+this.checkColisions()
+this.update()
+this.startGame()
+```
+
+## player.js
+```
+this.width/this.height
+this.velocity
+this.speed
+this.color
+this.lives
+this.move()
+this.draw()
+this.checkBorder()
+this.updateLives()
+```
+## balls.js
+```
+this.x/this.y
+this.width/this.height
+this.velocity
+this.speed
+this.color
+this.points
+this.move()
+this.draw()
+this.eliminateBalls()
+```
+
 ## States y States Transitions
 Definition of the different states and their transition (transition functions)
 ```
