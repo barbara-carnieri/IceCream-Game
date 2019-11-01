@@ -1,10 +1,10 @@
 # IceCream-Game
 
 ## Description
-Brief description of the project
+The IceCreamy Game, the player can move left and right and catch the icecreams scopes that are falling from the sky into his cone. Colorful balls increase the score.
 
 ## MVP (DOM - CANVAS)
-MVP definition, deliverables.
+CANVAS, In this game the player can move and catch objects falling.
 
 ## Backlog
 <ul>
