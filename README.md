@@ -1,4 +1,4 @@
-# IceCream-Game
+# IceCreamy Game
 
 ## Description
 The IceCreamy Game, the player can move left and right and catch the icecreams scopes that are falling from the sky into his cone. Colorful balls increase the score and fire ball decreases it. The player has 3 lives, the fire ball removes 1 life each time touched by the player.
