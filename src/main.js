@@ -7,14 +7,14 @@ function buildDom(htmlString) {
   return div.children[0];
 };
 
-// Runs on initial start and contains calls all other functions that manage the game
+// // Runs on initial start and contains calls all other functions that manage the game
 function main() {
   var game; 
   var splashScreen; 
   var gameOverScreen;
 
     
-  // -- splash screen
+//   // -- splash screen
 
   function createSplashScreen() {
     splashScreen = buildDom(`
@@ -38,7 +38,7 @@ function main() {
   };
 
     
-  // -- game screen
+//   // -- game screen
 
   function createGameScreen() {
     var gameScreen = buildDom(`
@@ -68,35 +68,62 @@ function main() {
   };
 
     
-  // -- game over screen
+//   // -- game over screen
 
-  function createGameOverScreen(score) {};
+  function createGameOverScreen(score) {
+    gameOverScreen = buildDom(`
+    <main>
+      <h1>Game over</h1>
+      <p>Your score: <span></span></p>
+      <button>Restart</button>
+  	</main>
+  `);
 
-  function removeGameOverScreen() {};
+  var button = gameOverScreen.querySelector('button');
+  button.addEventListener('click', startGame);
+
+  var span = gameOverScreen.querySelector('span');
+  span.innerText = score;
+
+  document.body.appendChild(gameOverScreen);
+  };
+
+  function removeGameOverScreen() {
+    if (gameOverScreen !== undefined) {
+      gameOverScreen.remove();
+    }
+  };
 
     
-  // -- Setting the game state 
+//   // -- Setting the game state 
 
   function startGame() {
     removeSplashScreen();
+    removeGameOverScreen();
 
     // var gameScreen = createGameScreen();
     game = new Game();
     game.gameScreen = createGameScreen();
 
-//Start the game
+// //Start the game
 game.start();
 
-//End the game
-
+// //End the game
+game.passGameOverCallback( function() {		// <-- UPDATE
+  gameOver(game.score);					// <-- UPDATE
+});
   };
 
-  function gameOver() {};
+  function gameOver(score) {
+
+    removeGameScreen();
+    createGameOverScreen(score);
+  };
 
     
-  // -- initialize Splash screen on initial start
+//   // -- initialize Splash screen on initial start
   createSplashScreen();
 }
 
-// Runs the function `main` once all resources are loaded
+// // Runs the function `main` once all resources are loaded
 window.addEventListener('load', main);

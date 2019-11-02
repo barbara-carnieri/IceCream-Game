@@ -4,7 +4,7 @@ function Game() {
   this.canvas = null;
   this.ctx = null;
   this.balls = [];
-  this.fireBall = [];
+  // this.fireBall = [];
   this.player = null;
   this.gameIsOver = false;
   this.gameScreen = null;
@@ -28,12 +28,12 @@ Game.prototype.start = function() {
   this.canvas.setAttribute('height', this.containerHeight);
 
 
-  // Create a new player for the current game
+// Create a new player for the current game
   // this.player = {};
   this.player = new Player(this.canvas, 3);		//	<-- UPDATE
     
     
-  // Event listener callback function
+// Event listener callback function
   this.handleKeyRight = function(event) {
       
     if (event.key === 'ArrowLeft') {
@@ -49,24 +49,25 @@ Game.prototype.start = function() {
   
 
     
-  // Add event listener for moving the player
+// Add event listener for moving the player
+//   var gameReference = this;
   document.body.addEventListener(
-    'keyright', 
+    'keydown', 
     this.handleKeyRight.bind(this)
 );
-      // Any function provided to eventListener 
-  // is always called by window (this === window)!
-  // So, we have to bind `this` to the `game` object,
-  // to prevent it from pointing to the `window` object
+//       // Any function provided to eventListener 
+//   // is always called by window (this === window)!
+//   // So, we have to bind `this` to the `game` object,
+//   // to prevent it from pointing to the `window` object
     
-  // Start the canvas requestAnimationFrame loop
+//   // Start the canvas requestAnimationFrame loop
   this.startLoop();
 };
 
 
 Game.prototype.startLoop = function() {
   var loop = function() {
-    //console.log('in loop');
+    // console.log('in loop');
       
  // 1. UPDATE THE STATE OF PLAYER AND BALLS
 
@@ -79,17 +80,17 @@ Game.prototype.startLoop = function() {
       this.balls.push(newBall);
     }
 
-    // 2. Check if player had hit any ball (check all enemies)
+    // 2. Check if player had hit any ball (check all balls)
     this.checkCollisions();
 
     // 3. Check if player is going off the screen
     this.player.handleScreenCollision();
 
-    // 4. Move existing enemies
+    // 4. Move existing balls
     // 5. Check if any ball is going of the screen
-    this.balls = this.balls.filter(function(ball) {
-      ball.updatePosition();
-      return ball.isInsideScreen();
+    this.balls = this.balls.filter(function(ballObj) {
+      ballObj.updatePosition();
+      return ballObj.isInsideScreen();
     });
 
       
@@ -101,31 +102,75 @@ Game.prototype.startLoop = function() {
     // Draw the player
     this.player.draw();
 
-    // Draw the enemies
-    this.balls.forEach(function(ball) {
-      ball.draw();
+    // Draw the balls
+    this.balls.forEach(function(ballObj) {
+      ballObj.draw();
     });
 
-// 4. TERMINATE LOOP IF GAME IS OVER
+// // 4. TERMINATE LOOP IF GAME IS OVER
     if (!this.gameIsOver) {
       window.requestAnimationFrame(loop);
     }
+
+//       //  5. Update Game data/stats
+      this.updateGameStats();
       
   }.bind(this);
 
-  // As loop function will be continuously invoked by
-  // the `window` object- `window.requestAnimationFrame(loop)`
-  // we have to bind the function so that value of `this` is
-  // pointing to the `game` object, like this:
-  // var loop = (function(){}).bind(this);
+//   // As loop function will be continuously invoked by
+//   // the `window` object- `window.requestAnimationFrame(loop)`
+//   // we have to bind the function so that value of `this` is
+//   // pointing to the `game` object, like this:
+//   // var loop = (function(){}).bind(this);
 
   window.requestAnimationFrame(loop);
 };
 
 
 
-Game.prototype.checkCollisions = function() {};
-Game.prototype.updateGameStats = function() {};
-Game.prototype.passGameOverCallback = function(callback) {};
-Game.prototype.gameOver = function() {};
-Game.prototype.removeGameScreen = function() {};
+Game.prototype.checkCollisions = function() {
+  
+  this.balls.forEach( function(ball) {
+    
+    // We will implement didCollide() in the next step
+    if ( this.player.didCollide(ball) ) {
+
+      this.player.removeLife();
+      console.log('lives', this.player.lives);
+      
+      // Move the ball off screen to the bottom
+      ball.y = this.canvas.height + ball.size;
+
+      if (this.player.lives === 0) {
+        this.gameOver();
+      }
+    }
+  }, this);
+  // We have to pass `this` value as the second argument
+  // as array method callbacks have a default `this` of undefined.
+};
+
+
+Game.prototype.updateGameStats = function() {
+  this.score += 1;
+  this.livesElement.innerHTML = this.player.lives;
+  this.scoreElement.innerHTML = this.score;
+};
+
+Game.prototype.passGameOverCallback = function(callback) {
+  this.passGameOverCallback = callback;
+  // //callback = gameOver
+};
+
+Game.prototype.gameOver = function() {
+  // flag `gameIsOver = true` stops the loop
+  this.gameIsOver = true;
+    
+  // console.log('GAME OVER');
+  //  // Call the gameOver function from `main` to show the Game Over Screen
+   this.passGameOverCallback();
+};
+
+Game.prototype.removeGameScreen = function() {
+  this.gameScreen.remove(); // remove() is the DOM method which removes the DOM Node  
+};
