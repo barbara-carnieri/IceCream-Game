@@ -18,9 +18,9 @@ function main() {
 
   function createSplashScreen() {
     splashScreen = buildDom(`
-    <main>
-      <h1>ICE CREAMY GAME</h1>
-      <button>Start</button>
+    <main class="start">
+      <h1 class="title">ICE CREAMY GAME</h1>
+      <button class="btn-start">START</button>
     </main>
     `);
 

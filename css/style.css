@@ -10,9 +10,10 @@ html {
 body {
   margin: 0;
   padding: 0;
-  /* background-image: url('https://image.freepik.com/free-vector/ice-cream-melted-yellow-seamless-wafer-texture-background_87561-142.jpg');
+  background-image: url('https://image.freepik.com/free-vector/ice-cream-melted-yellow-seamless-wafer-texture-background_87561-142.jpg');
+ /*https://image.freepik.com/free-vector/seamless-wafer-dripping-cream-repeatable-vector-art-background_9845-113.jpg*/
   background-repeat: no-repeat;
-  background-size: 100% 100%; */
+  background-size: 100% 100%;
 }
 
 
@@ -49,7 +50,7 @@ html, body {
 }
 
 
-/* ---- components ---- */
+/* ---- game page---- */
 
 .game {
   text-align: center;
@@ -83,3 +84,40 @@ html, body {
 .game .canvas-container {
   flex: 1;
 }
+
+/* ---- start page ---- */
+.start {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 100px;
+}
+
+.title {
+ font-size: 50px;
+ color: wheat;
+}
+
+.btn-start {
+  height: 80px;
+  width: 200px;
+  border-radius: 6px;
+  border-width: 0;
+  font-size: 40px;
+  /* margin-top: 50px; */
+  background-color:pink;
+  color: white;
+  box-shadow: 1px 1px #d46aab;
+  padding: 10px 30px;
+  margin: 500px 30px 30px 0;
+  text-align: center;
+  transition: background-color .3s;
+}
+
+.btn-start:hover {
+  background-color: whitesmoke;
+}
+
+
+
+
