@@ -1,9 +1,10 @@
 'use strict';
 
-function Player(canvas, lives) {
+function Player(canvas, lives, score) {
   this.canvas = canvas;
   this.ctx = this.canvas.getContext('2d');
   this.lives = lives;
+  this.score = score;
   //player canvas definitions:
   this.size = 100;
   this.y  = canvas.height -  this.size;
@@ -22,25 +23,25 @@ else if (direction === 'right') this.direction = 1;
 };
 
 
-Player.prototype.didCollide = function(ball) {
+Player.prototype.didCollide = function(fireball) {
   var playerLeft = this.x;
   var playerRight = this.x + this.size;
   var playerTop = this.y;
   var playerBottom = this.y + this.size;
 
-  var ballLeft = ball.x;
-  var ballRight = ball.x + ball.size;
-  var ballTop = ball.y;
-  var ballBottom = ball.y + ball.size;
+  var fireballLeft = fireball.x;
+  var fireballRight = fireball.x + fireball.size;
+  var fireballTop = fireball.y;
+  var fireballBottom = fireball.y + fireball.size;
 
-// Check if the ball intersects any of the player's sides
-  var crossLeft = ballLeft <= playerRight && ballLeft >= playerLeft;
+// Check if the fireball intersects any of the player's sides
+  var crossLeft = fireballLeft <= playerRight && fireballLeft >= playerLeft;
     
-  var crossRight = ballRight >= playerLeft && ballRight <= playerRight;
+  var crossRight = fireballRight >= playerLeft && fireballRight <= playerRight;
   
-  var crossBottom = ballBottom >= playerTop && ballBottom <= playerBottom;
+  var crossBottom = fireballBottom >= playerTop && fireballBottom <= playerBottom;
   
-  var crossTop = ballTop <= playerBottom && ballTop >= playerTop;
+  var crossTop = fireballTop <= playerBottom && fireballTop >= playerTop;
 
   if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
     return true;
@@ -60,6 +61,10 @@ Player.prototype.handleScreenCollision = function() {
 Player.prototype.removeLife = function() {
   this.lives -= 1;
 };
+
+Player.prototype.increaseScore = function() {
+this.score += 100;
+}
 
 Player.prototype.draw = function() {
   this.ctx.fillStyle = '#66D3FA';

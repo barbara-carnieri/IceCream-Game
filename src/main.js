@@ -115,7 +115,7 @@ game.passGameOverCallback( function() {		// <-- UPDATE
   };
 
   function gameOver(score) {
-
+    
     removeGameScreen();
     createGameOverScreen(score);
   };

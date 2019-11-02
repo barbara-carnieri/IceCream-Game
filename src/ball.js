@@ -1,14 +1,10 @@
-//Create the Player constructor
-
-'use strict';
 
 function Ball(canvas, x, speed) {
   this.canvas = canvas;
   this.ctx = canvas.getContext('2d');
   
-  this.size = 20;
+  this.size = 40;
   this.y = 0 - this.size;
-  // this.y = 0;
   this.x = x;
   this.speed = speed;
 
@@ -27,14 +23,11 @@ Ball.prototype.draw = function() {
     this.size,
     this.size,
   );
- 
-  
-
 };
 
 // // updatePosition()
 Ball.prototype.updatePosition = function() {
-  console.log('hello')
+  // console.log('hello')
   this.y = this.y + this.speed;
   console.log(this.y)
 };
