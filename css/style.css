@@ -83,6 +83,8 @@ html, body {
 
 .game .canvas-container {
   flex: 1;
+  background-color: rgba(250, 242, 249, 0.6);
+
 }
 
 /* ---- start page ---- */
@@ -90,26 +92,26 @@ html, body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 100px;
+  padding: 30px;
 }
 
 .title {
- font-size: 50px;
+
  color: wheat;
 }
 
 .btn-start {
-  height: 80px;
+  height: 70px;
   width: 200px;
   border-radius: 6px;
   border-width: 0;
   font-size: 40px;
   /* margin-top: 50px; */
-  background-color:pink;
+  background-color:#F18896;
   color: white;
-  box-shadow: 1px 1px #d46aab;
+  box-shadow: 1px 1px #f7e1f3;
   padding: 10px 30px;
-  margin: 450px 30px 30px 0;
+  margin: 150px 30px 30px 0;
   text-align: center;
   transition: background-color .3s;
 }
@@ -118,6 +120,37 @@ html, body {
   background-color: whitesmoke;
 }
 
+/* ---- game over page ---- */
+.gameover-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 50px;
+}
 
+.gameover {
+ font-size: 50px;
+ color: whitesmoke;
+}
 
+.gameoverscore {
+  font-size: 30px;
+  color: whitesmoke;
+  padding-top: 50px;
+}
 
+.btn-gameover {
+  height: 70px;
+  width: 200px;
+  border-radius: 6px;
+  border-width: 0;
+  font-size: 40px;
+  /* margin-top: 50px; */
+  background-color:#F18896;
+  color: white;
+  box-shadow: 1px 1px #f7e1f3;
+  padding: 10px 30px;
+  margin: 400px 30px 30px 0;
+  text-align: center;
+  transition: background-color .3s;
+}

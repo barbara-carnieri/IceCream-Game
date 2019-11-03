@@ -19,7 +19,7 @@ function main() {
   function createSplashScreen() {
     splashScreen = buildDom(`
     <main class="start">
-      <h1 class="title">ICE CREAMY GAME</h1>
+      <h1 class="title"><img src="./images/ICE Creamy.png" alt="logo"></h1>
       <button class="btn-start">START</button>
     </main>
     `);
@@ -72,10 +72,10 @@ function main() {
 
   function createGameOverScreen(score) {
     gameOverScreen = buildDom(`
-    <main>
-      <h1>Game over</h1>
-      <p>Your score: <span></span></p>
-      <button>Restart</button>
+    <main class="gameover-container">
+      <h1 class="gameover">Game over</h1>
+      <p class="gameoverscore">Your score: <span></span></p>
+      <button class="btn-gameover">Restart</button>
   	</main>
   `);
 

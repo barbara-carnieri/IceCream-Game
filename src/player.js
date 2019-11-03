@@ -6,7 +6,7 @@ function Player(canvas, lives, score) {
   this.lives = lives;
   this.score = score;
   //player canvas definitions:
-  this.size = 100;
+  this.size = 120,
   this.y  = canvas.height -  this.size;
   this.x = canvas.width/2;
   this.direction = 0;
@@ -66,13 +66,23 @@ Player.prototype.increaseScore = function() {
 this.score += 100;
 }
 
+
 Player.prototype.draw = function() {
-  this.ctx.fillStyle = '#66D3FA';
-  // fillRect(x, y, width, height)
-  this.ctx.fillRect(
+  var playerImg = new Image();
+  playerImg.src = "../images/pandacone.png"
+  this.ctx.drawImage (
+    playerImg,  
     this.x,
     this.y,
     this.size,
     this.size,
-  );
+    );
+    // this.ctx.fillStyle = '#66D3FA';
+  // fillRect(x, y, width, height)
+  // this.ctx.fillRect(
+  //   this.x,
+  //   this.y,
+  //   this.size,
+  //   this.size,
+  // );
 };
