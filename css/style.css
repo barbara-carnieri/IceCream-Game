@@ -21,7 +21,7 @@ body {
 
 body {
   color: #111;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: 'Fredoka One', cursive;
   font-size: 16px;
   line-height: 147%;
 }
@@ -63,14 +63,18 @@ html, body {
   height: 50px;
   display: flex;
   align-items: center;
+  background-color: white;
+  border-radius: 6px;
 }
 
 .game .lives {
   flex: 1;
+  color: #74cfed;
 }
 
 .game .score {
   flex: 1;
+  color: #74cfed;
 }
 
 .game .label {
@@ -78,7 +82,7 @@ html, body {
 }
 
 .game .value {
-  font-style: italic;
+  /* font-style: italic; */
 }
 
 .game .canvas-container {
@@ -92,7 +96,7 @@ html, body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 30px;
+  padding-top: 20px;
 }
 
 .title {
@@ -111,9 +115,10 @@ html, body {
   color: white;
   box-shadow: 1px 1px #f7e1f3;
   padding: 10px 30px;
-  margin: 150px 30px 30px 0;
+  margin: 150px 0px 30px 0px;
   text-align: center;
   transition: background-color .3s;
+  font-family: 'Fredoka One', cursive;
 }
 
 .btn-start:hover {
@@ -125,7 +130,7 @@ html, body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 50px;
+  padding-top: 40px;
 }
 
 .gameover {
@@ -153,4 +158,5 @@ html, body {
   margin: 400px 30px 30px 0;
   text-align: center;
   transition: background-color .3s;
+  font-family: 'Fredoka One', cursive;
 }

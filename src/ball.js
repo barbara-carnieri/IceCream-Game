@@ -1,23 +1,22 @@
-
 function Ball(canvas, x, speed) {
   this.canvas = canvas;
   this.ctx = canvas.getContext('2d');
-  
-  this.size = 40;
+
+  this.size = 50;
   this.y = 0 - this.size;
   this.x = x;
   this.speed = speed;
 
+  this.image = new Image();
+  this.image.src = "../images/icecreams/flavour"+(Math.floor((Math.random()*14))+1)+".png";
+};
+
+Ball.prototype.draw = function () {
+  // var ball1Img = new Image();
+  // ball1Img.src = "../images/icecreams/strawberry.png"
  
-}
-
-Ball.prototype.draw = function() {
-
-  
-  this.ctx.fillStyle = '#FF6F27';
-  // fillRect(x, y, width, height)
-  this.ctx.fillRect(
-
+  this.ctx.drawImage(
+    this.image,
     this.x,
     this.y,
     this.size,
@@ -26,19 +25,17 @@ Ball.prototype.draw = function() {
 };
 
 // // updatePosition()
-Ball.prototype.updatePosition = function() {
+Ball.prototype.updatePosition = function () {
   // console.log('hello')
   this.y = this.y + this.speed;
-  console.log(this.y)
 };
 
 // // isInsideScreen()
-Ball.prototype.isInsideScreen = function() {
+Ball.prototype.isInsideScreen = function () {
   // if y plus half of its size is smaller then canvas height return
-  if (this.y > this.canvas.heigth){
+  if (this.y > this.canvas.heigth) {
     return false;
-  }
-  else {
+  } else {
     return true;
   }
   //if false removes from the screen (position out of the screen)

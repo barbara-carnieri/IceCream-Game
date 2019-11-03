@@ -9,18 +9,18 @@ function buildDom(htmlString) {
 
 // // Runs on initial start and contains calls all other functions that manage the game
 function main() {
-  var game; 
-  var splashScreen; 
+  var game;
+  var splashScreen;
   var gameOverScreen;
 
-    
-//   // -- splash screen
+
+  //   // -- splash screen
 
   function createSplashScreen() {
     splashScreen = buildDom(`
     <main class="start">
       <h1 class="title"><img src="./images/ICE Creamy.png" alt="logo"></h1>
-      <button class="btn-start">START</button>
+      <button class="btn-start">PLAY</button>
     </main>
     `);
 
@@ -37,19 +37,19 @@ function main() {
     splashScreen.remove();
   };
 
-    
-//   // -- game screen
+
+  //   // -- game screen
 
   function createGameScreen() {
     var gameScreen = buildDom(`
     <main class="game container">
       <header>
         <div class="lives">
-          <span class="label">Lives:</span>
+          <span class="label">LIVES:</span>
           <span class="value"></span>
         </div>
         <div class="score">
-          <span class="label">Score:</span>
+          <span class="label">SCORE:</span>
           <span class="value"></span>
         </div>
       </header>
@@ -67,25 +67,25 @@ function main() {
     game.removeGameScreen();
   };
 
-    
-//   // -- game over screen
+
+  //   // -- game over screen
 
   function createGameOverScreen(score) {
     gameOverScreen = buildDom(`
     <main class="gameover-container">
-      <h1 class="gameover">Game over</h1>
+      <h1 class="gameover">GAME OVER</h1>
       <p class="gameoverscore">Your score: <span></span></p>
       <button class="btn-gameover">Restart</button>
   	</main>
   `);
 
-  var button = gameOverScreen.querySelector('button');
-  button.addEventListener('click', startGame);
+    var button = gameOverScreen.querySelector('button');
+    button.addEventListener('click', startGame);
 
-  var span = gameOverScreen.querySelector('span');
-  span.innerText = score;
+    var span = gameOverScreen.querySelector('span');
+    span.innerText = score;
 
-  document.body.appendChild(gameOverScreen);
+    document.body.appendChild(gameOverScreen);
   };
 
   function removeGameOverScreen() {
@@ -94,8 +94,8 @@ function main() {
     }
   };
 
-    
-//   // -- Setting the game state 
+
+  //   // -- Setting the game state 
 
   function startGame() {
     removeSplashScreen();
@@ -105,23 +105,23 @@ function main() {
     game = new Game();
     game.gameScreen = createGameScreen();
 
-// //Start the game
-game.start();
+    // //Start the game
+    game.start();
 
-// //End the game
-game.passGameOverCallback( function() {		// <-- UPDATE
-  gameOver(game.score);					// <-- UPDATE
-});
+    // //End the game
+    game.passGameOverCallback(function () { // <-- UPDATE
+      gameOver(game.score); // <-- UPDATE
+    });
   };
 
   function gameOver(score) {
-    
+
     removeGameScreen();
     createGameOverScreen(score);
   };
 
-    
-//   // -- initialize Splash screen on initial start
+
+  //   // -- initialize Splash screen on initial start
   createSplashScreen();
 }
 
