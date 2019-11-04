@@ -13,7 +13,7 @@ function Player(canvas, lives, score) {
   this.speed = 5;
 
   this.image = new Image();
-  this.image.src = "../images/pandacone.png"
+  this.image.src = "./images/pandacone.png"
 };
 
 //Create methods for the player:

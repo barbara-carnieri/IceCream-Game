@@ -8,7 +8,7 @@ function Ball(canvas, x, speed) {
   this.speed = speed;
 
   this.image = new Image();
-  this.image.src = "../images/icecreams/flavour"+(Math.floor((Math.random()*13))+1)+".png";
+  this.image.src = "./images/icecreams/flavour"+(Math.floor((Math.random()*13))+1)+".png";
 };
 
 Ball.prototype.draw = function () {
