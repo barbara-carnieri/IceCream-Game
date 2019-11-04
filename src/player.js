@@ -91,6 +91,7 @@ Player.prototype.draw = function () {
   );
 };
 
+
 Player.prototype.handleScreenCollision = function () {
   this.x = this.x + this.direction * this.speed;
   var screenLeft = 0;

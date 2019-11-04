@@ -20,6 +20,7 @@ function main() {
     splashScreen = buildDom(`
     <main class="start">
       <h1 class="title"><img src="./images/ICE Creamy.png" alt="logo"></h1>
+      <input class="input-name" type="text" placeholder="Your Name">
       <button class="btn-start">PLAY</button>
     </main>
     `);
@@ -74,13 +75,34 @@ function main() {
     gameOverScreen = buildDom(`
     <main class="gameover-container">
       <h1 class="gameover">GAME OVER</h1>
-      <p class="gameoverscore">Your score: <span></span></p>
+      <p class="gameoverscore">YOUR SCORE: <span></span></p>
+     
+
+      <table class="playersscore">
+        <tr>
+          <th>Ranking:</th>
+        </tr>
+        <tr>
+          <td id="name1" class="ranking-names"></td>
+          <td id="score1" class="ranking-scores"></td>
+        </tr>
+        <tr>
+          <td id="name2" class="ranking-names"></td>
+          <td id="score2" class="ranking-scores"></td>
+        </tr>
+        <tr>
+          <td id="name3" class="ranking-names"></td>
+          <td id="score3" class="ranking-scores"></td>
+        </tr>
+      </table>
+
       <button class="btn-gameover">Restart</button>
   	</main>
   `);
 
-    var button = gameOverScreen.querySelector('button');
-    button.addEventListener('click', startGame);
+    var restartButton = gameOverScreen.querySelector('.btn-gameover');
+    restartButton.addEventListener('click', startGame);
+
 
     var span = gameOverScreen.querySelector('span');
     span.innerText = score;
@@ -93,7 +115,7 @@ function main() {
       gameOverScreen.remove();
     }
   };
-
+  
 
   //   // -- Setting the game state 
 
