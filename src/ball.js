@@ -25,9 +25,17 @@ Ball.prototype.draw = function () {
 };
 
 // // updatePosition()
-Ball.prototype.updatePosition = function () {
+Ball.prototype.updatePosition = function (playerY) {
   // console.log('hello')
-  this.y = this.y + this.speed;
+
+  if(playerY === this.y){
+    this.y = playerY
+  }
+  else{
+    this.y = this.y + this.speed;
+
+  }
+
 };
 
 // // isInsideScreen()

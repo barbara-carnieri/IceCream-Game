@@ -108,10 +108,14 @@ Player.prototype.increaseScore = function () {
   this.score += 100;
 }
 
-// Player.prototype.pileBalls = function (){
-// // this.player.replace('this.player' + ')
-// // var playerUpdated = new Player(this.canvas);
-// // this.player.push(playerUpdated).join('');
+// Player.prototype.pileBalls = function (ball) {
+//   var playerLeft = this.x;
+//   var playerTop = this.y;
+
+//   var ballLeft = ball.x;
+//   var ballBottom = ball.y + ball.size;
+
+//   if (ballBottom === playerTop && ballLeft === playerLeft) {
+//     return;
+//   }
 // }
-
-
