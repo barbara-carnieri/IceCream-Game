@@ -11,13 +11,14 @@ function Fireball(canvas, x, speed) {
   // this.y = 0;
   this.x = x;
   this.speed = speed;
+
+  this.image = new Image();
+  this.image.src = "../images/fireball.png"
 }
 
 Fireball.prototype.draw = function () {
-  var fireballImg = new Image();
-  fireballImg.src = "../images/fireball.png"
   this.ctx.drawImage(
-    fireballImg,
+    this.image,
     this.x,
     this.y,
     this.size,

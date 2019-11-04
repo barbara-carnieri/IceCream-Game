@@ -68,7 +68,7 @@ Game.prototype.startLoop = function () {
   var loop = function () {
     // console.log('in loop');
 
-    // 1. UPDATE THE STATE OF PLAYER AND FIREBALLS
+    // 1. UPDATE THE STATE OF PLAYER AND FIREBALLS / BALLS
 
     // 0. Our player was already created - via `game.start()`
 
@@ -80,7 +80,7 @@ Game.prototype.startLoop = function () {
     }
 
     // 1. Create new balls randomly
-    if (Math.random() > 0.98) {
+    if (Math.random() > 0.96) {
       var randomX = this.canvas.width * Math.random();
       var newBall = new Ball(this.canvas, randomX, 6);
       this.balls.push(newBall);
@@ -149,11 +149,11 @@ Game.prototype.checkCollisions = function () {
 
   this.fireballs.forEach(function (fireball) {
 
-    // We will implement didCollide() in the next step
+    // We will implement didCollide() 
     if (this.player.didCollide(fireball)) {
 
       this.player.removeLife();
-      console.log('lives', this.player.lives);
+      // console.log('lives', this.player.lives);
 
       // Move the fireball off screen to the bottom
       fireball.y = this.canvas.height + fireball.size;
@@ -168,18 +168,15 @@ Game.prototype.checkCollisions = function () {
 
   this.balls.forEach(function (ball) {
 
-    // We will implement didCollide() in the next step
+    // We will implement didCollide() 
     if (this.player.didCollide(ball)) {
 
       this.player.increaseScore();
-      // console.log('lives', this.player.lives);
 
-      // Move the fireball off screen to the bottom
+      // Move the balls off screen to the bottom
       ball.y = this.canvas.height + ball.size;
 
-      if (this.player.lives === 0) {
-        this.gameOver();
-      }
+      // this.player.pileBalls();
     }
   }, this);
 };
