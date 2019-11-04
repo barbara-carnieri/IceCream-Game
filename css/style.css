@@ -11,7 +11,8 @@ body {
   margin: 0;
   padding: 0;
   /* background-image: url('https://image.freepik.com/free-vector/ice-cream-melted-yellow-seamless-wafer-texture-background_87561-142.jpg'); */
-  background-image: url('https://image.freepik.com/free-vector/seamless-wafer-dripping-cream-repeatable-vector-art-background_9845-113.jpg');
+  /* background-image: url('https://image.freepik.com/free-vector/seamless-wafer-dripping-cream-repeatable-vector-art-background_9845-113.jpg'); */
+  background-image: url('../images/background.jpg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
