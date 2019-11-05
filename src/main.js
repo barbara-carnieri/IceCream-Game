@@ -12,8 +12,7 @@ function main() {
   var game;
   var splashScreen;
   var gameOverScreen;
-  var inputName
-  //  var name;
+  var inputName;
 
   //   // -- splash screen
 
@@ -27,7 +26,7 @@ function main() {
       <h2 class="instruNeg"><img src="./images/negative.png" alt="linstruNeg"></h2>
       <h2 class="instruPos"><img src="./images/positive.png" alt="linstruPos"></h2>
       </div>
-      <input class="input-name" type="text" placeholder="Your Name">
+      <input class="input-name" type="text" placeholder="Your Name Here!">
       <button class="btn-start">PLAY</button>
     </main>
     `);
@@ -49,37 +48,11 @@ function main() {
   };
 
 
-  
+
   // -- save input name /score
-  
-  
   function saveData() {
-    
+
     inputName = splashScreen.querySelector('.input-name').value;
-    var newPlayer = [{ name:inputName, score: 0 }];
-    
-    // Stringify the data before storing in localStorage
-    var newPlayerStringified = JSON.stringify(newPlayer);
-    
-    // Save the data to the localStorage 
-    localStorage.setItem('score', newPlayerStringified);
-    
-    // Retrieve the stored data from local storage
-    var retrieved = localStorage.getItem('score');
-    // console.log('retrieved', retrieved);
-    
-    var newPlayerParsed = JSON.parse(retrieved);
-    
-    // console.log(newPlayerParsed);
-    
-    newPlayerParsed.push(newPlayer);
-    
-    // Parse the data back into an object/array
-    var stringifiedAgain = JSON.stringify(newPlayerParsed);
-    localStorage.setItem('score', stringifiedAgain);
-    
-    console.log(inputName);
-    
     startGame();
   }
 
@@ -120,43 +93,79 @@ function main() {
     gameOverScreen = buildDom(`
     <main class="gameover-container">
       <h1 class="gameover">GAME OVER</h1>
-      <p class="gameoverscore">YOUR SCORE: <span id="scorefinal"></span></p>
-      <p class="gameovername">YOUR NAME: <span id="namefinal"></span></p>
-
-      <table class="playersscore">
-        <tr>
-          <th>Ranking:</th>
-        </tr>
-        <tr>
-          <td id="name1" class="ranking-names"></td>
-          <td id="score1" class="ranking-scores"></td>
-        </tr>
-        <tr>
-          <td id="name2" class="ranking-names"></td>
-          <td id="score2" class="ranking-scores"></td>
-        </tr>
-        <tr>
-          <td id="name3" class="ranking-names"></td>
-          <td id="score3" class="ranking-scores"></td>
-        </tr>
-      </table>
-
+        <p class="gameovername"> <span id="namefinal"></span></p>
+        <p class="gameoverscore">YOUR SCORE: <span id="scorefinal"></span></p>
+        <table class="playersscore">
+          <tr>
+            <th>Ranking:</th>
+          </tr>
+          <tr>
+            <td id="name1" class="ranking-names"></td>
+            <td id="score1" class="ranking-scores"></td>
+          </tr>
+          <tr>
+            <td id="name2" class="ranking-names"></td>
+            <td id="score2" class="ranking-scores"></td>
+          </tr>
+          <tr>
+            <td id="name3" class="ranking-names"></td>
+            <td id="score3" class="ranking-scores"></td>
+          </tr>
+          <tr>
+            <td id="name4" class="ranking-names"></td>
+            <td id="score4" class="ranking-scores"></td>
+          </tr>
+          <tr>
+            <td id="name5" class="ranking-names"></td>
+            <td id="score5" class="ranking-scores"></td>
+          </tr>
+        </table>
       <button class="btn-gameover">Restart</button>
   	</main>
   `);
 
-    // var restartButton = gameOverScreen.querySelector('.btn-gameover');
-    // restartButton.addEventListener('click', startGame);
+
     var restartButton = gameOverScreen.querySelector('.btn-gameover');
     restartButton.addEventListener('click', createSplashScreen);
 
 
     var spanScoreFinal = gameOverScreen.querySelector('#scorefinal');
     spanScoreFinal.innerText = score;
-
     var spanNameFinal = gameOverScreen.querySelector('#namefinal');
     spanNameFinal.innerText = inputName;
 
+
+    var arrScores;
+
+    if (localStorage.getItem('arrScores') === null) {
+      arrScores = [];
+    } else {
+      arrScores = JSON.parse(localStorage.getItem('arrScores'));
+    }
+
+    var newPlayer = {
+      name: inputName,
+      score: score
+    };
+    arrScores.push(newPlayer);
+
+    localStorage.setItem('arrScores', JSON.stringify(arrScores));
+
+    var ranking = JSON.parse(localStorage.getItem('arrScores'));
+
+    ranking.sort(function (a, b) {
+      return b.score - a.score
+    });
+
+    for (var i = 0; i < ranking.length; i++) {
+      if (i < 5) {
+        console.log()
+        var score1 = gameOverScreen.querySelector('#score' + (i + 1));
+        score1.innerText = ranking[i].score;
+        var name1 = gameOverScreen.querySelector('#name' + (i + 1));
+        name1.innerText = ranking[i].name;
+      }
+    }
     document.body.appendChild(gameOverScreen);
   };
 
@@ -168,7 +177,6 @@ function main() {
 
 
   //   // -- Setting the game state 
-
   function startGame() {
     removeSplashScreen();
     removeGameOverScreen();
@@ -182,14 +190,11 @@ function main() {
 
     // //End the game
     game.passGameOverCallback(function () { // <-- UPDATE
-      gameOver(game.score); // <-- UPDATE
+      gameOver(game.score, inputName); // <-- UPDATE
     });
-
-
   };
 
   function gameOver(score, inputName) {
-    console.log('hello from gme over',inputName);
     removeGameScreen();
     createGameOverScreen(score, inputName);
   };
