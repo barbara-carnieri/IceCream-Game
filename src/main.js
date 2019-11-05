@@ -12,11 +12,13 @@ function main() {
   var game;
   var splashScreen;
   var gameOverScreen;
-
+  // var name;
 
   //   // -- splash screen
 
   function createSplashScreen() {
+    removeGameOverScreen();
+
     splashScreen = buildDom(`
     <main class="start">
       <h1 class="title"><img src="./images/ICE Creamy.png" alt="logo"></h1>
@@ -25,13 +27,14 @@ function main() {
     </main>
     `);
 
+
     document.body.appendChild(splashScreen);
 
-    var startButton = splashScreen.querySelector('button');
+    var startButton = splashScreen.querySelector('.btn-start');
     // startButton.addEventListener('click', function(){
     //   console.log('start clicked!');
     // });
-    startButton.addEventListener('click', startGame);
+    startButton.addEventListener('click', saveData);
   };
 
   function removeSplashScreen() {
@@ -39,6 +42,38 @@ function main() {
   };
 
 
+
+  // -- save input name /score
+  function saveData() {
+    var name = splashScreen.querySelector('.input-name').value;
+
+    const score = [
+      { name: name, score: 0 }
+    ];
+    
+    // Stringify the data before storing in localStorage
+    const scoreStringified = JSON.stringify(score);
+    
+    // Save the data to the localStorage 
+    localStorage.setItem('score', scoreStringified);
+    
+    // Retrieve the stored data from local storage
+    const retrieved = localStorage.getItem('score');
+    console.log('retrieved', retrieved);
+    
+    const scoreParsed = JSON.parse(retrieved);
+    
+    console.log(scoreParsed);
+    
+    scoreParsed.push({ name: name, score: 0 });
+    
+    // Parse the data back into an object/array
+    const stringifiedAgain = JSON.stringify(scoreParsed);
+    localStorage.setItem('score', stringifiedAgain);
+
+
+   startGame();
+  }
   //   // -- game screen
 
   function createGameScreen() {
@@ -46,7 +81,7 @@ function main() {
     <main class="game container">
       <header>
         <div class="lives">
-          <span class="label">LIVES:</span>
+          <span class="label"><img src="./images/pandacone.png" id="lives-logo" alt="lives-logo"></span>
           <span class="value"></span>
         </div>
         <div class="score">
@@ -100,12 +135,16 @@ function main() {
   	</main>
   `);
 
+    // var restartButton = gameOverScreen.querySelector('.btn-gameover');
+    // restartButton.addEventListener('click', startGame);
     var restartButton = gameOverScreen.querySelector('.btn-gameover');
-    restartButton.addEventListener('click', startGame);
+    restartButton.addEventListener('click', createSplashScreen);
 
 
     var span = gameOverScreen.querySelector('span');
     span.innerText = score;
+
+  
 
     document.body.appendChild(gameOverScreen);
   };
@@ -115,7 +154,7 @@ function main() {
       gameOverScreen.remove();
     }
   };
-  
+
 
   //   // -- Setting the game state 
 
@@ -134,6 +173,8 @@ function main() {
     game.passGameOverCallback(function () { // <-- UPDATE
       gameOver(game.score); // <-- UPDATE
     });
+
+
   };
 
   function gameOver(score) {

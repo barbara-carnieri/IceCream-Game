@@ -1,10 +1,11 @@
 'use strict';
 
-function Player(canvas, lives, score) {
+function Player(canvas, lives, score, name) {
   this.canvas = canvas;
   this.ctx = this.canvas.getContext('2d');
   this.lives = lives;
   this.score = score;
+  this.name = name;
   //player canvas definitions:
   this.size = 120;
   this.y = canvas.height - this.size;
@@ -106,7 +107,7 @@ Player.prototype.removeLife = function () {
 };
 
 Player.prototype.increaseScore = function () {
-  this.score += 100;
+  this.score += 150;
 }
 
 // Player.prototype.pileBalls = function (ball) {

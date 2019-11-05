@@ -9,7 +9,16 @@ function Game() {
   this.gameIsOver = false;
   this.gameScreen = null;
   this.score = 0;
+  this.name = '';
 }
+
+// // //   // -- save input name /score
+
+// var inputName = document.querySelector('.input-name');
+// inputName.addEventListener('input', function (event){
+//   this.player.playerName  = event.target.value;
+
+// })
 
 Game.prototype.start = function () {
   // Save reference to canvas and container. Create ctx
@@ -30,8 +39,8 @@ Game.prototype.start = function () {
 
   // Create a new player for the current game
   // this.player = {};
-  this.player = new Player(this.canvas, 3, 0); //	<-- UPDATE
-
+  this.player = new Player(this.canvas, 3, 0, this.name); //	<-- UPDATE
+  // this.player = new Player(this.canvas, 3, 0, this.playerName); 
 
   // Event listener callback function
   this.handleKeyRight = function (event) {
@@ -186,6 +195,7 @@ Game.prototype.checkCollisions = function () {
 
 Game.prototype.updateGameStats = function () {
   // this.score += 1;
+  this.livesElement.innerHTML = this.player.name;
   this.livesElement.innerHTML = this.player.lives;
   this.scoreElement.innerHTML = this.player.score;
 };
@@ -198,6 +208,7 @@ Game.prototype.passGameOverCallback = function (callback) {
 Game.prototype.gameOver = function () {
   // flag `gameIsOver = true` stops the loop
   this.score = this.player.score
+  this.name = this.player.name
   this.gameIsOver = true;
 
   // console.log('GAME OVER');

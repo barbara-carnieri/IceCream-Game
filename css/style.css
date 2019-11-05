@@ -73,6 +73,11 @@ html, body {
   color: #74cfed;
 }
 
+#lives-logo {
+  width: 30px;
+  height: 30px;
+}
+
 .game .score {
   flex: 1;
   color: #74cfed;
