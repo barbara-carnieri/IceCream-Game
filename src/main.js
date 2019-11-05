@@ -12,7 +12,8 @@ function main() {
   var game;
   var splashScreen;
   var gameOverScreen;
-  // var name;
+  var inputName
+  //  var name;
 
   //   // -- splash screen
 
@@ -22,11 +23,17 @@ function main() {
     splashScreen = buildDom(`
     <main class="start">
       <h1 class="title"><img src="./images/ICE Creamy.png" alt="logo"></h1>
+      <div class="instru">
+      <h2 class="instruNeg"><img src="./images/negative.png" alt="linstruNeg"></h2>
+      <h2 class="instruPos"><img src="./images/positive.png" alt="linstruPos"></h2>
+      </div>
       <input class="input-name" type="text" placeholder="Your Name">
       <button class="btn-start">PLAY</button>
     </main>
     `);
 
+    // <h2 class="instruPos"><img src="./images/positive.png" alt="linstruPos"></h2>
+    // // <h2 class="instruNeg"><img src="./images/instruneg.png" alt="linstruNeg"></h2>
 
     document.body.appendChild(splashScreen);
 
@@ -42,38 +49,41 @@ function main() {
   };
 
 
-
+  
   // -- save input name /score
+  
+  
   function saveData() {
-    var name = splashScreen.querySelector('.input-name').value;
-
-    const score = [
-      { name: name, score: 0 }
-    ];
+    
+    inputName = splashScreen.querySelector('.input-name').value;
+    var newPlayer = [{ name:inputName, score: 0 }];
     
     // Stringify the data before storing in localStorage
-    const scoreStringified = JSON.stringify(score);
+    var newPlayerStringified = JSON.stringify(newPlayer);
     
     // Save the data to the localStorage 
-    localStorage.setItem('score', scoreStringified);
+    localStorage.setItem('score', newPlayerStringified);
     
     // Retrieve the stored data from local storage
-    const retrieved = localStorage.getItem('score');
-    console.log('retrieved', retrieved);
+    var retrieved = localStorage.getItem('score');
+    // console.log('retrieved', retrieved);
     
-    const scoreParsed = JSON.parse(retrieved);
+    var newPlayerParsed = JSON.parse(retrieved);
     
-    console.log(scoreParsed);
+    // console.log(newPlayerParsed);
     
-    scoreParsed.push({ name: name, score: 0 });
+    newPlayerParsed.push(newPlayer);
     
     // Parse the data back into an object/array
-    const stringifiedAgain = JSON.stringify(scoreParsed);
+    var stringifiedAgain = JSON.stringify(newPlayerParsed);
     localStorage.setItem('score', stringifiedAgain);
-
-
-   startGame();
+    
+    console.log(inputName);
+    
+    startGame();
   }
+
+
   //   // -- game screen
 
   function createGameScreen() {
@@ -106,12 +116,12 @@ function main() {
 
   //   // -- game over screen
 
-  function createGameOverScreen(score) {
+  function createGameOverScreen(score, inputName) {
     gameOverScreen = buildDom(`
     <main class="gameover-container">
       <h1 class="gameover">GAME OVER</h1>
-      <p class="gameoverscore">YOUR SCORE: <span></span></p>
-     
+      <p class="gameoverscore">YOUR SCORE: <span id="scorefinal"></span></p>
+      <p class="gameovername">YOUR NAME: <span id="namefinal"></span></p>
 
       <table class="playersscore">
         <tr>
@@ -141,10 +151,11 @@ function main() {
     restartButton.addEventListener('click', createSplashScreen);
 
 
-    var span = gameOverScreen.querySelector('span');
-    span.innerText = score;
+    var spanScoreFinal = gameOverScreen.querySelector('#scorefinal');
+    spanScoreFinal.innerText = score;
 
-  
+    var spanNameFinal = gameOverScreen.querySelector('#namefinal');
+    spanNameFinal.innerText = inputName;
 
     document.body.appendChild(gameOverScreen);
   };
@@ -177,10 +188,10 @@ function main() {
 
   };
 
-  function gameOver(score) {
-
+  function gameOver(score, inputName) {
+    console.log('hello from gme over',inputName);
     removeGameScreen();
-    createGameOverScreen(score);
+    createGameOverScreen(score, inputName);
   };
 
 

@@ -9,7 +9,7 @@ function Game() {
   this.gameIsOver = false;
   this.gameScreen = null;
   this.score = 0;
-  this.name = '';
+  this.name = "";
 }
 
 // // //   // -- save input name /score
@@ -30,6 +30,7 @@ Game.prototype.start = function () {
   this.livesElement = this.gameScreen.querySelector('.lives .value');
   this.scoreElement = this.gameScreen.querySelector('.score .value');
 
+  
   // Set the canvas dimensions to match the parent
   this.containerWidth = this.canvasContainer.offsetWidth;
   this.containerHeight = this.canvasContainer.offsetHeight;
@@ -46,10 +47,10 @@ Game.prototype.start = function () {
   this.handleKeyRight = function (event) {
 
     if (event.key === 'ArrowLeft') {
-      console.log('LEFT');
+      // console.log('LEFT');
       this.player.setDirection('left');
     } else if (event.key === 'ArrowRight') {
-      console.log('RIGHT');
+      // console.log('RIGHT');
       this.player.setDirection('right');
     }
   };
@@ -82,7 +83,7 @@ Game.prototype.startLoop = function () {
     // 0. Our player was already created - via `game.start()`
 
     // 1. Create new fireballs randomly
-    if (Math.random() > 0.98) {
+    if (Math.random() > 0.986) {
       var randomX = this.canvas.width * Math.random();
       var newFireball = new Fireball(this.canvas, randomX, 6);
       this.fireballs.push(newFireball);
@@ -187,15 +188,14 @@ Game.prototype.checkCollisions = function () {
 
       // this.player.pileBalls();
       // ball.x = player.x;
-      // ball.y = canvas.height - player.size;
+      // ball.y = this.canvas.height - player.size;
     }
   }, this);
 };
 
 
 Game.prototype.updateGameStats = function () {
-  // this.score += 1;
-  this.livesElement.innerHTML = this.player.name;
+  
   this.livesElement.innerHTML = this.player.lives;
   this.scoreElement.innerHTML = this.player.score;
 };
