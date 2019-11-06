@@ -191,6 +191,7 @@ html, body {
   color: #6FCAC4;
   margin-top: 30px;
   background-color: white;
+  text-shadow: 1px 1px gray;
   border-radius: 6px;
   padding: 50px;
 }

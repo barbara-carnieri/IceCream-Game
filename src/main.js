@@ -52,6 +52,7 @@ function main() {
   // -- save input name /score
   function saveData() {
     inputName = splashScreen.querySelector('.input-name').value;
+    console.log(inputName);
     startGame();
   }
 
@@ -149,7 +150,7 @@ function main() {
     arrScores.push(newPlayer);
 
     localStorage.setItem('arrScores', JSON.stringify(arrScores));
-
+  
     var ranking = JSON.parse(localStorage.getItem('arrScores'));
 
     ranking.sort(function (a, b) {

@@ -5,6 +5,7 @@ function Game() {
   this.ctx = null;
   this.fireballs = [];
   this.balls = [];
+  this.newBall = [];
   this.player = null;
   this.gameIsOver = false;
   this.gameScreen = null;
@@ -184,13 +185,49 @@ Game.prototype.checkCollisions = function () {
       this.player.increaseScore();
 
       // Move the balls off screen to the bottom
-      ball.y = this.canvas.height + ball.size;
+      // ball.y = this.canvas.height + ball.size;
 
       // this.player.pileBalls();
-      // ball.x = this.player.x + (1.5 * ball.size);
-      // ball.y = this.canvas.height - this.player.size - ball.size;
+    
+      ball.x = this.player.x + (1.5 * ball.size);
+      ball.y = this.canvas.height - this.player.size - ball.size;
+
+    //   // ball.x = this.player.x + (1.5 * ball.size);
+    //   // ball.y = this.canvas.height - this.player.size - (2 * ball.size);
+
     }
+    // else if (this.ball.didCollide(newball)) {
+
+    //   this.player.increaseScore();
+
+
+    //   newBall.x = this.ball.x;
+    //   newBall.y = this.ball.y - newBall.size;
+
+    // }
+
   }, this);
+
+
+
+  // this.newBall.forEach(function (newBall) {
+
+  //   // We will implement didCollide() 
+  //   if (this.balls.didCollide(newBall)) {
+
+  //     this.player.increaseScore();
+
+
+  //     newBall.x = this.ball.x;
+  //     newBall.y = this.ball.y - newBall.size;
+
+  //   }
+  // }, this);
+
+
+
+
+
 };
 
 

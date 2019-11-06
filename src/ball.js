@@ -35,7 +35,6 @@ Ball.prototype.updatePosition = function (playerY) {
     this.y = this.y + this.speed;
 
   }
-
 };
 
 // // isInsideScreen()
@@ -47,4 +46,30 @@ Ball.prototype.isInsideScreen = function () {
     return true;
   }
   //if false removes from the screen (position out of the screen)
+};
+
+Ball.prototype.didCollide = function (newBall) {
+  var ballLeft = this.x;
+  var ballRight = this.x + this.size;
+  var ballTop = this.y;
+  var ballBottom = this.y + this.size;
+
+  var newBallLeft = newBall.x;
+  var newBallRight = newBall.x + newBall.size;
+  var newBallTop = newBall.y;
+  var newBallBottom = newBall.y + newBall.size;
+
+  // Check if the fireball intersects any of the player's sides
+  var crossLeft = newBallLeft <= ballRight && newBallLeft >= ballLeft;
+
+  var crossRight = newBallRight >= ballLeft && newBallRight <= ballRight;
+
+  var crossBottom = newBallBottom >= ballTop && newBallBottom <= ballBottom;
+
+  var crossTop = newBallTop <= ballBottom && newBallTop >= ballTop;
+
+  if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
+    return true;
+  }
+  return false;
 };
