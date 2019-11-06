@@ -51,7 +51,6 @@ function main() {
 
   // -- save input name /score
   function saveData() {
-
     inputName = splashScreen.querySelector('.input-name').value;
     startGame();
   }
@@ -64,7 +63,7 @@ function main() {
     <main class="game container">
       <header>
         <div class="lives">
-          <span class="label"><img src="./images/pandacone.png" id="lives-logo" alt="lives-logo"></span>
+          <span class="label"><img src="./images/penguincone.png" id="lives-logo" alt="lives-logo"></span>
           <span class="value"></span>
         </div>
         <div class="score">
@@ -159,7 +158,7 @@ function main() {
 
     for (var i = 0; i < ranking.length; i++) {
       if (i < 5) {
-        console.log()
+        // console.log('#score' + (i + 1));
         var score1 = gameOverScreen.querySelector('#score' + (i + 1));
         score1.innerText = ranking[i].score;
         var name1 = gameOverScreen.querySelector('#name' + (i + 1));

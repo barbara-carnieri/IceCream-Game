@@ -137,6 +137,7 @@ html, body {
   border-radius: 6px;
   border-width: 0;
   font-size: 40px;
+  font-family: 'Lilita One', cursive;
   /* margin-top: 50px; */
   background-color:#F18896;
   color: white;
@@ -145,8 +146,12 @@ html, body {
   margin: 10px 0px 30px 0px;
   text-align: center;
   transition: background-color .3s;
-  font-family: 'Fredoka One', cursive;
+  
 }
+/* font-family: 'McLaren', cursive; */
+/* font-family: 'Mitr', sans-serif; */
+/* font-family: 'Days One', sans-serif; */
+/* font-family: 'Lilita One', cursive; */
 
 .btn-start:hover {
   background-color: whitesmoke;
@@ -163,28 +168,36 @@ html, body {
 .gameover {
  font-size: 60px;
  color: whitesmoke;
+ text-shadow: 1px 1px gray;
 }
 
 .gameovername {
   font-size: 50px;
   color: whitesmoke;
-  padding-top: 20px;
+  text-shadow: 1px 1px gray;
+  padding-top: 10px;
 }
 
 .gameoverscore {
   font-size: 40px;
   color: whitesmoke;
+  text-shadow: 1px 1px gray;
   padding-top: 50px;
 }
 
 .playersscore {
   font-size: 40px;
+  font-family: 'Russo One', sans-serif;
   color: #6FCAC4;
-  margin-top: 50px;
+  margin-top: 30px;
   background-color: white;
   border-radius: 6px;
   padding: 50px;
 }
+/* font-family: 'McLaren', cursive; */
+/* font-family: 'Mitr', sans-serif; */
+/* font-family: 'Days One', sans-serif; */
+/* font-family: 'Lilita One', cursive; */
 
 .ranking-names {
   padding: 15px;
@@ -208,5 +221,5 @@ th {
   margin: 20px 0px 30px 0;
   text-align: center;
   transition: background-color .3s;
-  font-family: 'Fredoka One', cursive;
+  font-family: 'Lilita One', cursive;
 }

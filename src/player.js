@@ -7,14 +7,14 @@ function Player(canvas, lives, score, name) {
   this.score = score;
   this.name = name;
   //player canvas definitions:
-  this.size = 120;
+  this.size = 140;
   this.y = canvas.height - this.size;
   this.x = canvas.width / 2 - this.size / 2;
   this.direction = 0;
   this.speed = 5;
 
   this.image = new Image();
-  this.image.src = "./images/pandacone.png"
+  this.image.src = "./images/penguincone.png"
 };
 
 //Create methods for the player:
@@ -111,13 +111,6 @@ Player.prototype.increaseScore = function () {
 }
 
 // Player.prototype.pileBalls = function (ball) {
-//   var playerLeft = this.x;
-//   var playerTop = this.y;
-
-//   var ballLeft = ball.x;
-//   var ballBottom = ball.y + ball.size;
-
-//   if (ballBottom === playerTop && ballLeft === playerLeft) {
-//     return;
-//   }
-// }
+//   ball.x = this.player.x + (1.5 * ball.size);
+//   ball.y = this.canvas.height - this.player.size - ball.size;
+// };

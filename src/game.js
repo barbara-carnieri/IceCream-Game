@@ -187,8 +187,8 @@ Game.prototype.checkCollisions = function () {
       ball.y = this.canvas.height + ball.size;
 
       // this.player.pileBalls();
-      // ball.x = player.x;
-      // ball.y = this.canvas.height - player.size;
+      // ball.x = this.player.x + (1.5 * ball.size);
+      // ball.y = this.canvas.height - this.player.size - ball.size;
     }
   }, this);
 };
