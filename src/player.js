@@ -5,7 +5,7 @@ function Player(canvas, lives, score, name) {
   this.ctx = this.canvas.getContext('2d');
   this.lives = lives;
   this.score = score;
-  this.name = name;
+  // this.name = name;
   //player canvas definitions:
   this.size = 140;
   this.y = canvas.height - this.size;

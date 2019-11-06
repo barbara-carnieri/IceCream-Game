@@ -97,25 +97,27 @@ function main() {
         <p class="gameoverscore">YOUR SCORE: <span id="scorefinal"></span></p>
         <table class="playersscore">
           <tr>
-            <th>Ranking:</th>
-          </tr>
-          <tr>
+            <td id="star1"><img src="./images/stars/1.png" alt="star1"></td>
             <td id="name1" class="ranking-names"></td>
             <td id="score1" class="ranking-scores"></td>
           </tr>
           <tr>
+            <td id="star2"><img src="./images/stars/2.png" alt="star2"></td>
             <td id="name2" class="ranking-names"></td>
             <td id="score2" class="ranking-scores"></td>
           </tr>
           <tr>
+            <td id="star3"><img src="./images/stars/3.png" alt="star3"></td>
             <td id="name3" class="ranking-names"></td>
             <td id="score3" class="ranking-scores"></td>
           </tr>
           <tr>
+            <td id="star4"><img src="./images/stars/4.png" alt="star4"></td>
             <td id="name4" class="ranking-names"></td>
             <td id="score4" class="ranking-scores"></td>
           </tr>
           <tr>
+            <td id="star5"><img src="./images/stars/5.png" alt="star5"></td>
             <td id="name5" class="ranking-names"></td>
             <td id="score5" class="ranking-scores"></td>
           </tr>
@@ -124,7 +126,7 @@ function main() {
   	</main>
   `);
 
-
+//          <td id="star1"><img src="./images/stars/1.png" alt="star1"></td>
     var restartButton = gameOverScreen.querySelector('.btn-gameover');
     restartButton.addEventListener('click', createSplashScreen);
 
@@ -150,7 +152,7 @@ function main() {
     arrScores.push(newPlayer);
 
     localStorage.setItem('arrScores', JSON.stringify(arrScores));
-  
+  // localStorage.clear();
     var ranking = JSON.parse(localStorage.getItem('arrScores'));
 
     ranking.sort(function (a, b) {

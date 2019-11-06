@@ -93,7 +93,7 @@ html, body {
 
 .game .canvas-container {
   flex: 1;
-  background-color: rgba(250, 242, 249, 0.6);
+  background-color: rgba(250, 242, 249, 0.9);
 
 }
 
@@ -124,9 +124,9 @@ html, body {
 }
 
 .input-name {
-  font-size: 15px;
+  font-size: 20px;
   text-align: center;
-  color: #74cfed;
+  color: #2d9fc5;
   margin-top: 10px;
   border-radius: 6px;
 }
@@ -185,6 +185,13 @@ html, body {
   padding-top: 50px;
 }
 
+tr {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+
 .playersscore {
   font-size: 40px;
   font-family: 'Russo One', sans-serif;
@@ -193,7 +200,7 @@ html, body {
   background-color: white;
   text-shadow: 1px 1px gray;
   border-radius: 6px;
-  padding: 50px;
+  padding: 15px;
 }
 /* font-family: 'McLaren', cursive; */
 /* font-family: 'Mitr', sans-serif; */
@@ -204,9 +211,6 @@ html, body {
   padding: 15px;
 }
 
-th {
-  padding-bottom: 20px;
-}
 
 .btn-gameover {
   height: 70px;

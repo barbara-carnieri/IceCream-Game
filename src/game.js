@@ -10,16 +10,13 @@ function Game() {
   this.gameIsOver = false;
   this.gameScreen = null;
   this.score = 0;
-  this.name = "";
+  // this.name = "";
+
+  this.audio = new Audio('../audio/musicgame.wav');
+  this.audioScore = new Audio('../audio/score.wav');
+  this.audioFireball = new Audio('../audio/fireball.wav');
 }
 
-// // //   // -- save input name /score
-
-// var inputName = document.querySelector('.input-name');
-// inputName.addEventListener('input', function (event){
-//   this.player.playerName  = event.target.value;
-
-// })
 
 Game.prototype.start = function () {
   // Save reference to canvas and container. Create ctx
@@ -78,7 +75,7 @@ Game.prototype.start = function () {
 Game.prototype.startLoop = function () {
   var loop = function () {
     // console.log('in loop');
-
+    this.audio.play();
     // 1. UPDATE THE STATE OF PLAYER AND FIREBALLS / BALLS
 
     // 0. Our player was already created - via `game.start()`
@@ -91,7 +88,7 @@ Game.prototype.startLoop = function () {
     }
 
     // 1. Create new balls randomly
-    if (Math.random() > 0.96) {
+    if (Math.random() > 0.90) {
       var randomX = this.canvas.width * Math.random();
       var newBall = new Ball(this.canvas, randomX, 6);
       this.balls.push(newBall);
@@ -162,7 +159,7 @@ Game.prototype.checkCollisions = function () {
 
     // We will implement didCollide() 
     if (this.player.didCollide(fireball)) {
-
+      this.audioFireball.play();
       this.player.removeLife();
       // console.log('lives', this.player.lives);
 
@@ -171,6 +168,7 @@ Game.prototype.checkCollisions = function () {
 
       if (this.player.lives === 0) {
         this.gameOver();
+  
       }
     }
   }, this);
@@ -181,7 +179,7 @@ Game.prototype.checkCollisions = function () {
 
     // We will implement didCollide() 
     if (this.player.didCollide(ball)) {
-
+      // this.audioScore.play();
       this.player.increaseScore();
 
       // Move the balls off screen to the bottom
@@ -245,7 +243,7 @@ Game.prototype.passGameOverCallback = function (callback) {
 Game.prototype.gameOver = function () {
   // flag `gameIsOver = true` stops the loop
   this.score = this.player.score
-  this.name = this.player.name
+  // this.name = this.player.name
   this.gameIsOver = true;
 
   // console.log('GAME OVER');
@@ -255,4 +253,5 @@ Game.prototype.gameOver = function () {
 
 Game.prototype.removeGameScreen = function () {
   this.gameScreen.remove(); // remove() is the DOM method which removes the DOM Node  
+  this.audio.pause();
 };
