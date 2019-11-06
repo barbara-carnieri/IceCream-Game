@@ -10,7 +10,7 @@ CANVAS, In this game the player can move and catch objects falling.
 <ul>
   <li>Fill up the scone until the top of the page to win</li>
   <li>Each ball  catches is added to the top of the last one</li>
-  <li>Bad Ice cream ball deduct 2 balls from the pile and decrease points</li>
+  <li>Bad Ice cream ball deduct ball from the pile</li>
 </ul>
 
 ## Data Structure
@@ -142,11 +142,10 @@ gameoverScreen / winScreen
 * FireBall - decreaseScore
 
 ## Links
-Trello
-<a href="https://trello.com/b/W7yrr1M3">Link url</a>
+<a href="https://trello.com/b/W7yrr1M3">Trello Link url</a>
 
 ## Git
-URls for the project repo and deploy <a href="#">Link Repo</a> <a href="#">Link Deploy</a>
+URls for the project repo and deploy <a href="https://github.com/barbara-carnieri/IceCream-Game">Link Repo</a> <a href="https://barbara-carnieri.github.io/IceCream-Game/">Link Deploy</a>
 
 ## Slides
-URls for the project presentation (slides) Link Slides.com
+<a href="https://docs.google.com/presentation/d/1x4XGkQkhz4wiEgKMI9L-tXDhDRoqIFdW2wjCJhGgHCE/edit?usp=sharing">Slides Link url</a>

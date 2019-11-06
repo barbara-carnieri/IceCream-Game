@@ -172,14 +172,14 @@ Game.prototype.checkCollisions = function () {
       }
     }
   }, this);
-  // We have to pass `this` value as the second argument
-  // as array method callbacks have a default `this` of undefined.
 
+  // var counter = 0;
   this.balls.forEach(function (ball) {
 
     // We will implement didCollide() 
     if (this.player.didCollide(ball)) {
-      // this.audioScore.play();
+      // counter++;
+      this.audioScore.play();
       this.player.increaseScore();
 
       // Move the balls off screen to the bottom
@@ -188,8 +188,9 @@ Game.prototype.checkCollisions = function () {
       // this.player.pileBalls();
     
       ball.x = this.player.x + (1.5 * ball.size);
-      ball.y = this.canvas.height - this.player.size - ball.size;
+      ball.y = this.canvas.height - this.player.size - (ball.size);
 
+      this.audioScore.pause();
     //   // ball.x = this.player.x + (1.5 * ball.size);
     //   // ball.y = this.canvas.height - this.player.size - (2 * ball.size);
 
@@ -206,8 +207,6 @@ Game.prototype.checkCollisions = function () {
 
   }, this);
 
-
-
   // this.newBall.forEach(function (newBall) {
 
   //   // We will implement didCollide() 
@@ -221,10 +220,6 @@ Game.prototype.checkCollisions = function () {
 
   //   }
   // }, this);
-
-
-
-
 
 };
 
