@@ -24,6 +24,7 @@ function main() {
       <h1 class="title"><img src="./images/ICE Creamy.png" alt="logo"></h1>
       <div class="instru">
       <h2 class="instruNeg"><img src="./images/negative.png" alt="linstruNeg"></h2>
+      
       <h2 class="instruPos"><img src="./images/positive.png" alt="linstruPos"></h2>
       </div>
       <input class="input-name" type="text" placeholder="Your Name Here!">
@@ -52,7 +53,6 @@ function main() {
   // -- save input name /score
   function saveData() {
     inputName = splashScreen.querySelector('.input-name').value;
-    console.log(inputName);
     startGame();
   }
 
@@ -66,6 +66,10 @@ function main() {
         <div class="lives">
           <span class="label"><img src="./images/penguincone.png" id="lives-logo" alt="lives-logo"></span>
           <span class="value"></span>
+        </div>
+        <div class="controls">
+        <span class="label">CONTROLS:</span>
+        <span class="controls"><img src="./images/controls.png" id="controls" alt="controls"></span>
         </div>
         <div class="score">
           <span class="label">SCORE:</span>

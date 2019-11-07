@@ -6,6 +6,7 @@ function Ball(canvas, x, speed) {
   this.y = 0 - this.size;
   this.x = x;
   this.speed = speed;
+  this.isCollected = false;
 
   this.image = new Image();
   this.image.src = "./images/icecreams/flavour"+(Math.floor((Math.random()*13))+1)+".png";
@@ -31,6 +32,9 @@ Ball.prototype.updatePosition = function (playerY) {
   if(playerY === this.y){
     this.y = playerY
   }
+  else if(this.isCollected) {
+    return;
+  }
   else{
     this.y = this.y + this.speed;
 
@@ -48,25 +52,25 @@ Ball.prototype.isInsideScreen = function () {
   //if false removes from the screen (position out of the screen)
 };
 
-Ball.prototype.didCollide = function (newBall) {
+Ball.prototype.didCollect = function (lastBall) {
   var ballLeft = this.x;
   var ballRight = this.x + this.size;
   var ballTop = this.y;
   var ballBottom = this.y + this.size;
 
-  var newBallLeft = newBall.x;
-  var newBallRight = newBall.x + newBall.size;
-  var newBallTop = newBall.y;
-  var newBallBottom = newBall.y + newBall.size;
+  var lastBallLeft = lastBall.x;
+  var lastBallRight = lastBall.x + lastBall.size;
+  var lastBallTop = lastBall.y;
+  var lastBallBottom = lastBall.y + lastBall.size;
 
   // Check if the fireball intersects any of the player's sides
-  var crossLeft = newBallLeft <= ballRight && newBallLeft >= ballLeft;
+  var crossLeft = lastBallLeft <= ballRight && lastBallLeft >= ballLeft;
 
-  var crossRight = newBallRight >= ballLeft && newBallRight <= ballRight;
+  var crossRight = lastBallRight >= ballLeft && lastBallRight <= ballRight;
 
-  var crossBottom = newBallBottom >= ballTop && newBallBottom <= ballBottom;
+  var crossBottom = lastBallBottom >= ballTop && lastBallBottom <= ballBottom;
 
-  var crossTop = newBallTop <= ballBottom && newBallTop >= ballTop;
+  var crossTop = lastBallTop <= ballBottom && lastBallTop >= ballTop;
 
   if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
     return true;

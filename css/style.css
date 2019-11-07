@@ -10,8 +10,6 @@ html {
 body {
   margin: 0;
   padding: 0;
-  /* background-image: url('https://image.freepik.com/free-vector/ice-cream-melted-yellow-seamless-wafer-texture-background_87561-142.jpg'); */
-  /* background-image: url('https://image.freepik.com/free-vector/seamless-wafer-dripping-cream-repeatable-vector-art-background_9845-113.jpg'); */
   background-image: url('../images/background.jpg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -57,6 +55,7 @@ html, body {
   text-align: center;
   display: flex;
   flex-direction: column;
+
   height: 100%;
 }
 
@@ -66,11 +65,13 @@ html, body {
   align-items: center;
   background-color: white;
   border-radius: 6px;
+  justify-content: center;
 }
 
 .game .lives {
   flex: 1;
   color: #74cfed;
+  font-family: 'Lobster Two', cursive;
 }
 
 #lives-logo {
@@ -78,9 +79,21 @@ html, body {
   height: 30px;
 }
 
+.game .controls {
+  flex: 1;
+  color: #74cfed;
+  font-family: 'Lobster Two', cursive;
+}
+
+#controls {
+  width: 30px;
+  height: 30px;
+}
+
 .game .score {
   flex: 1;
   color: #74cfed;
+  font-family: 'Lobster Two', cursive;
 }
 
 .game .label {
@@ -129,6 +142,7 @@ html, body {
   color: #2d9fc5;
   margin-top: 10px;
   border-radius: 6px;
+  font-family: 'Lobster Two', cursive;
 }
 
 .btn-start {
@@ -137,7 +151,7 @@ html, body {
   border-radius: 6px;
   border-width: 0;
   font-size: 40px;
-  font-family: 'Lilita One', cursive;
+  font-family: 'Lobster Two', cursive;
   /* margin-top: 50px; */
   background-color:#F18896;
   color: white;
@@ -148,6 +162,8 @@ html, body {
   transition: background-color .3s;
   
 }
+/* font-family: 'Lobster Two', cursive; */
+
 /* font-family: 'McLaren', cursive; */
 /* font-family: 'Mitr', sans-serif; */
 /* font-family: 'Days One', sans-serif; */
@@ -172,17 +188,19 @@ html, body {
 }
 
 .gameovername {
-  font-size: 50px;
-  color: whitesmoke;
-  text-shadow: 1px 1px gray;
+  font-size: 60px;
+  font-family: 'Lobster Two', cursive;
+  text-shadow: 2px 2px #F18896;
   padding-top: 10px;
+  color: white;
 }
 
 .gameoverscore {
-  font-size: 40px;
+  font-size: 35px;
   color: whitesmoke;
   text-shadow: 1px 1px gray;
   padding-top: 50px;
+  
 }
 
 tr {
@@ -194,7 +212,7 @@ tr {
 
 .playersscore {
   font-size: 40px;
-  font-family: 'Russo One', sans-serif;
+  font-family: 'Lobster Two', cursive;
   color: #6FCAC4;
   margin-top: 30px;
   background-color: white;
@@ -202,10 +220,6 @@ tr {
   border-radius: 6px;
   padding: 15px;
 }
-/* font-family: 'McLaren', cursive; */
-/* font-family: 'Mitr', sans-serif; */
-/* font-family: 'Days One', sans-serif; */
-/* font-family: 'Lilita One', cursive; */
 
 .ranking-names {
   padding: 15px;
@@ -226,5 +240,5 @@ tr {
   margin: 20px 0px 30px 0;
   text-align: center;
   transition: background-color .3s;
-  font-family: 'Lilita One', cursive;
+  font-family: 'Lobster Two', cursive;
 }

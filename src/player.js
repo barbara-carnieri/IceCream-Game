@@ -1,6 +1,6 @@
 'use strict';
 
-function Player(canvas, lives, score, name) {
+function Player(canvas, lives, score) {
   this.canvas = canvas;
   this.ctx = this.canvas.getContext('2d');
   this.lives = lives;
@@ -14,7 +14,13 @@ function Player(canvas, lives, score, name) {
   this.speed = 5;
 
   this.image = new Image();
-  this.image.src = "./images/penguincone.png"
+  this.image.src = "./images/penguincone.png";
+  
+  this.hasFirstIceCream = false;
+  this.lastIceCream = null;
+
+
+  this.counter = 0;
 };
 
 //Create methods for the player:
@@ -27,25 +33,27 @@ Player.prototype.setDirection = function (direction) {
 };
 
 
-Player.prototype.didCollide = function (fireball) {
+Player.prototype.didCollide = function (ball) {
+
+
   var playerLeft = this.x;
   var playerRight = this.x + this.size;
   var playerTop = this.y;
   var playerBottom = this.y + this.size;
 
-  var fireballLeft = fireball.x;
-  var fireballRight = fireball.x + fireball.size;
-  var fireballTop = fireball.y;
-  var fireballBottom = fireball.y + fireball.size;
+  var ballLeft = ball.x;
+  var ballRight = ball.x + ball.size;
+  var ballTop = ball.y;
+  var ballBottom = ball.y + ball.size;
 
-  // Check if the fireball intersects any of the player's sides
-  var crossLeft = fireballLeft <= playerRight && fireballLeft >= playerLeft;
+  // Check if the ball intersects any of the player's sides
+  var crossLeft = ballLeft <= playerRight && ballLeft >= playerLeft;
 
-  var crossRight = fireballRight >= playerLeft && fireballRight <= playerRight;
+  var crossRight = ballRight >= playerLeft && ballRight <= playerRight;
 
-  var crossBottom = fireballBottom >= playerTop && fireballBottom <= playerBottom;
+  var crossBottom = ballBottom >= playerTop && ballBottom <= playerBottom;
 
-  var crossTop = fireballTop <= playerBottom && fireballTop >= playerTop;
+  var crossTop = ballTop <= playerBottom && ballTop >= playerTop;
 
   if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
     return true;
@@ -80,6 +88,8 @@ Player.prototype.didCollide = function (ball) {
   return false;
 };
 
+
+
 Player.prototype.draw = function () {
   // var playerImg = new Image();
   // playerImg.src = "../images/pandacone.png"
@@ -92,9 +102,15 @@ Player.prototype.draw = function () {
   );
 };
 
+Player.prototype.updatePlayerPosition = function () {
+  this.x = this.x + this.direction * this.speed;
+  
+}
+
 
 Player.prototype.handleScreenCollision = function () {
-  this.x = this.x + this.direction * this.speed;
+  this.updatePlayerPosition();
+  
   var screenLeft = 0;
   var screenRight = this.canvas.width - this.size;
 
@@ -111,6 +127,7 @@ Player.prototype.increaseScore = function () {
 }
 
 // Player.prototype.pileBalls = function (ball) {
+//   this.counter++;
 //   ball.x = this.player.x + (1.5 * ball.size);
-//   ball.y = this.canvas.height - this.player.size - ball.size;
+//   ball.y = this.canvas.height - this.player.size - (counter++ * ball.size);
 // };
