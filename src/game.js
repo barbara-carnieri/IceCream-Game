@@ -184,14 +184,11 @@ Game.prototype.checkCollisions = function () {
     // don't check the collected balls
 
     if (ball.isCollected) { // just move the collected ball
-      console.log("COLLECTED");
       
       ball.x = this.player.x + (1.5 * ball.size);
       return;
     }
     else if (ball.isCollected === false) { // check ball that is not collected yet
-      console.log("NOT YET COLLECTED");
-      
       if (!this.player.hasFirstIceCream) { // we don't have first ice cream yet
         
         // We will implement didCollide() 
@@ -218,15 +215,17 @@ Game.prototype.checkCollisions = function () {
           
         }
       }
-      else if (this.player.hasFirstIceCream && this.lastIceCream) { // we already collected some ice cream
+      else if (this.player.hasFirstIceCream && this.player.lastIceCream) { // we already collected some ice cream
     
-        if (ball.didCollect(this.player.lastIceCream))
+        if (ball.didCollect(this.player.lastIceCream)) {
+          
           ball.x = this.player.x + (1.5 * ball.size);
           ball.y = this.player.lastIceCream.y - ball.size;
           
           ball.isCollected = true;
           this.player.lastIceCream = {
             x: ball.x, y: ball.y
+          }
         }
 
       }

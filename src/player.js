@@ -15,7 +15,7 @@ function Player(canvas, lives, score) {
 
   this.image = new Image();
   this.image.src = "./images/penguincone.png";
-  
+
   this.hasFirstIceCream = false;
   this.lastIceCream = null;
 

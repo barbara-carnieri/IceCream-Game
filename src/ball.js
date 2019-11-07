@@ -53,6 +53,8 @@ Ball.prototype.isInsideScreen = function () {
 };
 
 Ball.prototype.didCollect = function (lastBall) {
+
+  
   var ballLeft = this.x;
   var ballRight = this.x + this.size;
   var ballTop = this.y;
@@ -72,7 +74,7 @@ Ball.prototype.didCollect = function (lastBall) {
 
   var crossTop = lastBallTop <= ballBottom && lastBallTop >= ballTop;
 
-  if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
+  if ((crossLeft || crossRight) && (crossTop)) {
     return true;
   }
   return false;
