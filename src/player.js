@@ -123,7 +123,7 @@ Player.prototype.removeLife = function () {
 };
 
 Player.prototype.increaseScore = function () {
-  this.score += 1;
+  this.score += 150;
 }
 
 // Player.prototype.pileBalls = function (ball) {

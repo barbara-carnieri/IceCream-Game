@@ -28,7 +28,7 @@ Game.prototype.start = function () {
   this.livesElement = this.gameScreen.querySelector('.lives .value');
   this.scoreElement = this.gameScreen.querySelector('.score .value');
 
-  
+
   // Set the canvas dimensions to match the parent
   this.containerWidth = this.canvasContainer.offsetWidth;
   this.containerHeight = this.canvasContainer.offsetHeight;
@@ -52,9 +52,6 @@ Game.prototype.start = function () {
       this.player.setDirection('right');
     }
   };
-
-
-
 
   // Add event listener for moving the player
   //   var gameReference = this;
@@ -132,8 +129,8 @@ Game.prototype.startLoop = function () {
       ballObj.draw();
     });
 
-     // Draw the balls
-     this.newBalls.forEach(function (newballObj) {
+    // Draw the balls
+    this.newBalls.forEach(function (newballObj) {
       newballObj.draw();
     });
 
@@ -146,16 +143,13 @@ Game.prototype.startLoop = function () {
     this.updateGameStats();
 
   }.bind(this);
-
   //   // As loop function will be continuously invoked by
   //   // the `window` object- `window.requestAnimationFrame(loop)`
   //   // we have to bind the function so that value of `this` is
   //   // pointing to the `game` object, like this:
   //   // var loop = (function(){}).bind(this);
-
   window.requestAnimationFrame(loop);
 };
-
 
 
 Game.prototype.checkCollisions = function () {
@@ -173,88 +167,82 @@ Game.prototype.checkCollisions = function () {
 
       if (this.player.lives === 0) {
         this.gameOver();
-  
+
       }
     }
   }, this);
 
-  // var counter = 0;
+
   this.balls.forEach(function (ball) {
 
     // don't check the collected balls
 
     if (ball.isCollected) { // just move the collected ball
-      
+
       ball.x = this.player.x + (1.5 * ball.size);
       return;
-    }
-    else if (ball.isCollected === false) { // check ball that is not collected yet
+    } else if (ball.isCollected === false) { // check ball that is not collected yet
       if (!this.player.hasFirstIceCream) { // we don't have first ice cream yet
-        
+
         // We will implement didCollide() 
         if (this.player.didCollide(ball)) {
-          // counter++;
+
           this.audioScore.play();
           this.player.increaseScore();
-          
-          // Move the balls off screen to the bottom
-          // ball.y = this.canvas.height + ball.size;
-          
+
           ball.x = this.player.x + (1.5 * ball.size);
           ball.y = this.canvas.height - this.player.size - (ball.size);
-          
+
           ball.isCollected = true;
           this.player.hasFirstIceCream = true;
           this.player.lastIceCream = {
-            x: ball.x, y: ball.y
+            x: ball.x,
+            y: ball.y
           }
 
           // this.audioScore.pause();
           // ball.x = this.player.x + (1.5 * ball.size);
           // ball.y = this.canvas.height - this.player.size - (counter++ * ball.size);
-          
+
         }
-      }
-      else if (this.player.hasFirstIceCream && this.player.lastIceCream) { // we already collected some ice cream
-    
+      } else if (this.player.hasFirstIceCream && this.player.lastIceCream) { // we already collected some ice cream
+
         if (ball.didCollect(this.player.lastIceCream)) {
-          
+          this.audioScore.play();
+          this.player.increaseScore();
+
           ball.x = this.player.x + (1.5 * ball.size);
           ball.y = this.player.lastIceCream.y - ball.size;
-          
+
           ball.isCollected = true;
           this.player.lastIceCream = {
-            x: ball.x, y: ball.y
+            x: ball.x,
+            y: ball.y
           }
         }
-
       }
-  }
-    // else if (this.balls.didCollide(newball)) {
-    //   this.player.increaseScore();
-    //   newBall.x = this.balls.x;
-    //   newBall.y = this.balls.y - newBall.size;
-    // }
+    }
 
   }, this);
 
-  // this.newBalls.forEach(function (newBall) {
+  // else if (this.balls.didCollide(newball)) {
+  //   this.player.increaseScore();
+  //   newBall.x = this.balls.x;
+  //   newBall.y = this.balls.y - newBall.size;
+  // }
 
+  // this.newBalls.forEach(function (newBall) {
   //   // We will implement didCollide() 
   //   if (this.player.didCollide(newBall)) {
 
   //     // this.player.increaseScore();
-
   //     newBall.x = this.balls.x;
   //     newBall.y = this.balls.y - ball.size;
   //   }
   // }, this);
-
 };
 
-
 Game.prototype.updateGameStats = function () {
-  
   this.livesElement.innerHTML = this.player.lives;
   this.scoreElement.innerHTML = this.player.score;
 };
