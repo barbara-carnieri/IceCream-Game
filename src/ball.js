@@ -13,9 +13,6 @@ function Ball(canvas, x, speed) {
 };
 
 Ball.prototype.draw = function () {
-  // var ball1Img = new Image();
-  // ball1Img.src = "../images/icecreams/strawberry.png"
- 
   this.ctx.drawImage(
     this.image,
     this.x,
@@ -27,8 +24,6 @@ Ball.prototype.draw = function () {
 
 // // updatePosition()
 Ball.prototype.updatePosition = function (playerY) {
-  // console.log('hello')
-
   if(playerY === this.y){
     this.y = playerY
   }
@@ -37,7 +32,6 @@ Ball.prototype.updatePosition = function (playerY) {
   }
   else{
     this.y = this.y + this.speed;
-
   }
 };
 
@@ -53,8 +47,6 @@ Ball.prototype.isInsideScreen = function () {
 };
 
 Ball.prototype.didCollect = function (lastBall) {
-
-  
   var ballLeft = this.x;
   var ballRight = this.x + this.size;
   var ballTop = this.y;

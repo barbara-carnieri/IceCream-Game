@@ -13,14 +13,12 @@ function Player(canvas, lives, score) {
   this.direction = 0;
   this.speed = 5;
 
-  this.image = new Image();
-  this.image.src = "./images/penguincone.png";
-
   this.hasFirstIceCream = false;
   this.lastIceCream = null;
 
-
-  this.counter = 0;
+  this.image = new Image();
+  this.image.src = "./images/penguincone.png";
+  this.audioBonus = new Audio('../audio/bonus.wav');
 };
 
 //Create methods for the player:
@@ -34,8 +32,6 @@ Player.prototype.setDirection = function (direction) {
 
 
 Player.prototype.didCollide = function (ball) {
-
-
   var playerLeft = this.x;
   var playerRight = this.x + this.size;
   var playerTop = this.y;
@@ -60,39 +56,8 @@ Player.prototype.didCollide = function (ball) {
   }
   return false;
 };
-
-
-Player.prototype.didCollide = function (ball) {
-  var playerLeft = this.x;
-  var playerRight = this.x + this.size;
-  var playerTop = this.y;
-  var playerBottom = this.y + this.size;
-
-  var ballLeft = ball.x;
-  var ballRight = ball.x + ball.size;
-  var ballTop = ball.y;
-  var ballBottom = ball.y + ball.size;
-
-  // Check if the ball intersects any of the player's sides
-  var crossLeft = ballLeft <= playerRight && ballLeft >= playerLeft;
-
-  var crossRight = ballRight >= playerLeft && ballRight <= playerRight;
-
-  var crossBottom = ballBottom >= playerTop && ballBottom <= playerBottom;
-
-  var crossTop = ballTop <= playerBottom && ballTop >= playerTop;
-
-  if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
-    return true;
-  }
-  return false;
-};
-
-
 
 Player.prototype.draw = function () {
-  // var playerImg = new Image();
-  // playerImg.src = "../images/pandacone.png"
   this.ctx.drawImage(
     this.image,
     this.x,
@@ -104,13 +69,10 @@ Player.prototype.draw = function () {
 
 Player.prototype.updatePlayerPosition = function () {
   this.x = this.x + this.direction * this.speed;
-  
 }
-
 
 Player.prototype.handleScreenCollision = function () {
   this.updatePlayerPosition();
-  
   var screenLeft = 0;
   var screenRight = this.canvas.width - this.size;
 
@@ -126,8 +88,7 @@ Player.prototype.increaseScore = function () {
   this.score += 150;
 }
 
-// Player.prototype.pileBalls = function (ball) {
-//   this.counter++;
-//   ball.x = this.player.x + (1.5 * ball.size);
-//   ball.y = this.canvas.height - this.player.size - (counter++ * ball.size);
-// };
+Player.prototype.getBonus = function () {
+  this.score += 1000;
+  this.audioBonus.play();
+}

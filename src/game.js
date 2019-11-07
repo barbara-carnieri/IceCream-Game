@@ -10,13 +10,12 @@ function Game() {
   this.gameIsOver = false;
   this.gameScreen = null;
   this.score = 0;
-  // this.name = "";
 
   this.audio = new Audio('../audio/musicgame.wav');
   this.audioScore = new Audio('../audio/score.wav');
   this.audioFireball = new Audio('../audio/fireball.wav');
+  this.audioGameOver = new Audio('../audio/gameover.wav');
 }
-
 
 Game.prototype.start = function () {
   // Save reference to canvas and container. Create ctx
@@ -28,13 +27,11 @@ Game.prototype.start = function () {
   this.livesElement = this.gameScreen.querySelector('.lives .value');
   this.scoreElement = this.gameScreen.querySelector('.score .value');
 
-
   // Set the canvas dimensions to match the parent
   this.containerWidth = this.canvasContainer.offsetWidth;
   this.containerHeight = this.canvasContainer.offsetHeight;
   this.canvas.setAttribute('width', this.containerWidth);
   this.canvas.setAttribute('height', this.containerHeight);
-
 
   // Create a new player for the current game
   // this.player = {};
@@ -43,7 +40,6 @@ Game.prototype.start = function () {
 
   // Event listener callback function
   this.handleKeyRight = function (event) {
-
     if (event.key === 'ArrowLeft') {
       // console.log('LEFT');
       this.player.setDirection('left');
@@ -80,14 +76,14 @@ Game.prototype.startLoop = function () {
     // 1. Create new fireballs randomly
     if (Math.random() > 0.986) {
       var randomX = this.canvas.width * Math.random();
-      var newFireball = new Fireball(this.canvas, randomX, 6);
+      var newFireball = new Fireball(this.canvas, randomX, 5);
       this.fireballs.push(newFireball);
     }
 
     // 1. Create new balls randomly
     if (Math.random() > 0.90) {
       var randomX = this.canvas.width * Math.random();
-      var newBall = new Ball(this.canvas, randomX, 6);
+      var newBall = new Ball(this.canvas, randomX, 5);
       this.balls.push(newBall);
     }
 
@@ -110,10 +106,8 @@ Game.prototype.startLoop = function () {
       return ballObj.isInsideScreen();
     });
 
-
     // 2. CLEAR THE CANVAS
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
 
     // 3. UPDATE THE CANVAS
     // Draw the player
@@ -129,17 +123,12 @@ Game.prototype.startLoop = function () {
       ballObj.draw();
     });
 
-    // Draw the balls
-    this.newBalls.forEach(function (newballObj) {
-      newballObj.draw();
-    });
-
     // // 4. TERMINATE LOOP IF GAME IS OVER
     if (!this.gameIsOver) {
       window.requestAnimationFrame(loop);
     }
 
-    //       //  5. Update Game data/stats
+    // //  5. Update Game data/stats
     this.updateGameStats();
 
   }.bind(this);
@@ -176,7 +165,6 @@ Game.prototype.checkCollisions = function () {
   this.balls.forEach(function (ball) {
 
     // don't check the collected balls
-
     if (ball.isCollected) { // just move the collected ball
 
       ball.x = this.player.x + (1.5 * ball.size);
@@ -191,7 +179,7 @@ Game.prototype.checkCollisions = function () {
           this.player.increaseScore();
 
           ball.x = this.player.x + (1.5 * ball.size);
-          ball.y = this.canvas.height - this.player.size - (ball.size);
+          ball.y = this.canvas.height - this.player.size - ball.size;
 
           ball.isCollected = true;
           this.player.hasFirstIceCream = true;
@@ -199,11 +187,7 @@ Game.prototype.checkCollisions = function () {
             x: ball.x,
             y: ball.y
           }
-
-          // this.audioScore.pause();
-          // ball.x = this.player.x + (1.5 * ball.size);
-          // ball.y = this.canvas.height - this.player.size - (counter++ * ball.size);
-
+          // console.log('last ice cream', this.player.lastIceCream);
         }
       } else if (this.player.hasFirstIceCream && this.player.lastIceCream) { // we already collected some ice cream
 
@@ -219,27 +203,16 @@ Game.prototype.checkCollisions = function () {
             x: ball.x,
             y: ball.y
           }
+          // console.log('last ice cream2', this.player.lastIceCream);
+        } else if (this.player.lastIceCream.y <= -5) {
+          this.balls = [];
+          this.player.lastIceCream.y = this.canvas.height - this.player.size;
+          ball.isCollected === false;
+          this.player.getBonus();
         }
       }
     }
-
   }, this);
-
-  // else if (this.balls.didCollide(newball)) {
-  //   this.player.increaseScore();
-  //   newBall.x = this.balls.x;
-  //   newBall.y = this.balls.y - newBall.size;
-  // }
-
-  // this.newBalls.forEach(function (newBall) {
-  //   // We will implement didCollide() 
-  //   if (this.player.didCollide(newBall)) {
-
-  //     // this.player.increaseScore();
-  //     newBall.x = this.balls.x;
-  //     newBall.y = this.balls.y - ball.size;
-  //   }
-  // }, this);
 };
 
 Game.prototype.updateGameStats = function () {
@@ -257,7 +230,7 @@ Game.prototype.gameOver = function () {
   this.score = this.player.score
   // this.name = this.player.name
   this.gameIsOver = true;
-
+  this.audioGameOver.play();
   // console.log('GAME OVER');
   //  // Call the gameOver function from `main` to show the Game Over Screen
   this.passGameOverCallback();

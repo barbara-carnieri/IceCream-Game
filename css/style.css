@@ -3,24 +3,25 @@
 html {
   box-sizing: border-box;
 }
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-image: url('../images/background.jpg');
+  background-image: url("../images/background.jpg");
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
-
 
 /* ---- typography ---- */
 
 body {
   color: #111;
-  font-family: 'Fredoka One', cursive;
+  font-family: "Fredoka One", cursive;
   font-size: 16px;
   line-height: 147%;
 }
@@ -29,11 +30,10 @@ p {
   margin: 0;
 }
 
-
-
 /* ---- layout ---- */
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -48,14 +48,12 @@ html, body {
   }
 }
 
-
 /* ---- game page---- */
 
 .game {
   text-align: center;
   display: flex;
   flex-direction: column;
-
   height: 100%;
 }
 
@@ -66,12 +64,13 @@ html, body {
   background-color: white;
   border-radius: 6px;
   justify-content: center;
+  font-size: 25px;
 }
 
 .game .lives {
   flex: 1;
   color: #74cfed;
-  font-family: 'Lobster Two', cursive;
+  font-family: "Lobster Two", cursive;
 }
 
 #lives-logo {
@@ -82,32 +81,27 @@ html, body {
 .game .controls {
   flex: 1;
   color: #74cfed;
-  font-family: 'Lobster Two', cursive;
+  font-family: "Lobster Two", cursive;
 }
 
-#controls {
-  width: 30px;
-  height: 30px;
+#controls-logo {
+  width: 35px;
+  height: 35px;
 }
 
 .game .score {
   flex: 1;
   color: #74cfed;
-  font-family: 'Lobster Two', cursive;
+  font-family: "Lobster Two", cursive;
 }
 
 .game .label {
   font-weight: bold;
 }
 
-.game .value {
-  /* font-style: italic; */
-}
-
 .game .canvas-container {
   flex: 1;
   background-color: rgba(250, 242, 249, 0.9);
-
 }
 
 /* ---- start page ---- */
@@ -129,7 +123,6 @@ html, body {
 
 .instruNeg {
   margin-right: 60px;
- 
 }
 
 .instruPos {
@@ -142,7 +135,7 @@ html, body {
   color: #2d9fc5;
   margin-top: 10px;
   border-radius: 6px;
-  font-family: 'Lobster Two', cursive;
+  font-family: "Lobster Two", cursive;
 }
 
 .btn-start {
@@ -151,23 +144,16 @@ html, body {
   border-radius: 6px;
   border-width: 0;
   font-size: 40px;
-  font-family: 'Lobster Two', cursive;
+  font-family: "Lobster Two", cursive;
   /* margin-top: 50px; */
-  background-color:#F18896;
+  background-color: #f18896;
   color: white;
   box-shadow: 1px 1px #f7e1f3;
   padding: 10px 30px;
   margin: 10px 0px 30px 0px;
   text-align: center;
-  transition: background-color .3s;
-  
+  transition: background-color 0.3s;
 }
-/* font-family: 'Lobster Two', cursive; */
-
-/* font-family: 'McLaren', cursive; */
-/* font-family: 'Mitr', sans-serif; */
-/* font-family: 'Days One', sans-serif; */
-/* font-family: 'Lilita One', cursive; */
 
 .btn-start:hover {
   background-color: whitesmoke;
@@ -182,15 +168,15 @@ html, body {
 }
 
 .gameover {
- font-size: 60px;
- color: whitesmoke;
- text-shadow: 1px 1px gray;
+  font-size: 60px;
+  color: whitesmoke;
+  text-shadow: 1px 1px gray;
 }
 
 .gameovername {
   font-size: 60px;
-  font-family: 'Lobster Two', cursive;
-  text-shadow: 2px 2px #F18896;
+  font-family: "Lobster Two", cursive;
+  text-shadow: 2px 2px #f18896;
   padding-top: 10px;
   color: white;
 }
@@ -200,7 +186,6 @@ html, body {
   color: whitesmoke;
   text-shadow: 1px 1px gray;
   padding-top: 50px;
-  
 }
 
 tr {
@@ -209,11 +194,10 @@ tr {
   justify-content: flex-start;
 }
 
-
 .playersscore {
   font-size: 40px;
-  font-family: 'Lobster Two', cursive;
-  color: #6FCAC4;
+  font-family: "Lobster Two", cursive;
+  color: #6fcac4;
   margin-top: 30px;
   background-color: white;
   text-shadow: 1px 1px gray;
@@ -225,7 +209,6 @@ tr {
   padding: 15px;
 }
 
-
 .btn-gameover {
   height: 70px;
   width: 200px;
@@ -233,12 +216,12 @@ tr {
   border-width: 0;
   font-size: 40px;
   /* margin-top: 50px; */
-  background-color:#F18896;
+  background-color: #f18896;
   color: white;
   box-shadow: 1px 1px #f7e1f3;
   padding: 10px 30px;
   margin: 20px 0px 30px 0;
   text-align: center;
-  transition: background-color .3s;
-  font-family: 'Lobster Two', cursive;
+  transition: background-color 0.3s;
+  font-family: "Lobster Two", cursive;
 }
