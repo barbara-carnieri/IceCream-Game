@@ -66,7 +66,7 @@ Ball.prototype.didCollect = function (lastBall) {
 
   var crossTop = lastBallTop <= ballBottom && lastBallTop >= ballTop;
 
-  if ((crossLeft || crossRight) && (crossTop)) {
+  if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
     return true;
   }
   return false;

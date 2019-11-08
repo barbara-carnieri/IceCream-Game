@@ -18,7 +18,7 @@ function Player(canvas, lives, score) {
 
   this.image = new Image();
   this.image.src = "./images/penguincone.png";
-  this.audioBonus = new Audio('../audio/bonus.wav');
+  this.audioBonus = new Audio('./audio/bonus.wav');
 };
 
 //Create methods for the player:
@@ -32,6 +32,34 @@ Player.prototype.setDirection = function (direction) {
 
 
 Player.prototype.didCollide = function (ball) {
+  var playerLeft = this.x;
+  var playerRight = this.x + this.size;
+  var playerTop = this.y;
+  var playerBottom = this.y + this.size;
+
+  var ballLeft = ball.x;
+  var ballRight = ball.x + ball.size;
+  var ballTop = ball.y;
+  var ballBottom = ball.y + ball.size;
+
+  // Check if the ball intersects any of the player's sides
+  var crossLeft = ballLeft <= playerRight && ballLeft >= playerLeft;
+
+  var crossRight = ballRight >= playerLeft && ballRight <= playerRight;
+
+  var crossBottom = ballBottom >= playerTop && ballBottom <= playerBottom;
+
+  var crossTop = ballTop <= playerBottom && ballTop >= playerTop;
+
+  if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
+    return true;
+  }
+  return false;
+};
+
+Player.prototype.didCollide = function (ball) {
+
+
   var playerLeft = this.x;
   var playerRight = this.x + this.size;
   var playerTop = this.y;

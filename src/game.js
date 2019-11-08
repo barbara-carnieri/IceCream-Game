@@ -11,10 +11,10 @@ function Game() {
   this.gameScreen = null;
   this.score = 0;
 
-  this.audio = new Audio('../audio/musicgame.wav');
-  this.audioScore = new Audio('../audio/score.wav');
-  this.audioFireball = new Audio('../audio/fireball.wav');
-  this.audioGameOver = new Audio('../audio/gameover.wav');
+  this.audio = new Audio('./audio/musicgame.wav');
+  this.audioScore = new Audio('./audio/score.wav');
+  this.audioFireball = new Audio('./audio/fireball.wav');
+  this.audioGameOver = new Audio('./audio/gameover.wav');
 }
 
 Game.prototype.start = function () {
@@ -123,6 +123,11 @@ Game.prototype.startLoop = function () {
       ballObj.draw();
     });
 
+    // Draw the balls
+    this.newBalls.forEach(function (newballObj) {
+      newballObj.draw();
+    });
+
     // // 4. TERMINATE LOOP IF GAME IS OVER
     if (!this.gameIsOver) {
       window.requestAnimationFrame(loop);
@@ -178,7 +183,7 @@ Game.prototype.checkCollisions = function () {
           this.audioScore.play();
           this.player.increaseScore();
 
-          ball.x = this.player.x + (1.5 * ball.size);
+          ball.x = this.player.x + (1.8 * ball.size);
           ball.y = this.canvas.height - this.player.size - ball.size;
 
           ball.isCollected = true;
@@ -195,7 +200,7 @@ Game.prototype.checkCollisions = function () {
           this.audioScore.play();
           this.player.increaseScore();
 
-          ball.x = this.player.x + (1.5 * ball.size);
+          ball.x = this.player.x + (1.8 * ball.size);
           ball.y = this.player.lastIceCream.y - ball.size;
 
           ball.isCollected = true;
@@ -204,7 +209,8 @@ Game.prototype.checkCollisions = function () {
             y: ball.y
           }
           // console.log('last ice cream2', this.player.lastIceCream);
-        } else if (this.player.lastIceCream.y <= -5) {
+        } 
+        else if (this.player.lastIceCream.y <= -5) {
           this.balls = [];
           this.player.lastIceCream.y = this.canvas.height - this.player.size;
           ball.isCollected === false;
