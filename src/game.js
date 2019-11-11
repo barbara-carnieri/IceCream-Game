@@ -183,7 +183,7 @@ Game.prototype.checkCollisions = function () {
           this.audioScore.play();
           this.player.increaseScore();
 
-          ball.x = this.player.x + (1.8 * ball.size);
+          ball.x = this.player.x + (1.7 * ball.size);
           ball.y = this.canvas.height - this.player.size - ball.size;
 
           ball.isCollected = true;
@@ -200,7 +200,7 @@ Game.prototype.checkCollisions = function () {
           this.audioScore.play();
           this.player.increaseScore();
 
-          ball.x = this.player.x + (1.8 * ball.size);
+          ball.x = this.player.x + ( 1.7 * ball.size);
           ball.y = this.player.lastIceCream.y - ball.size;
 
           ball.isCollected = true;

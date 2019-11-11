@@ -118,5 +118,6 @@ Player.prototype.increaseScore = function () {
 
 Player.prototype.getBonus = function () {
   this.score += 1000;
+  this.lives += 1;
   this.audioBonus.play();
 }
