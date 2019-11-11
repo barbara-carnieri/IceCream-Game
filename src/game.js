@@ -1,6 +1,7 @@
 'use strict';
 
-function Game() {
+class Game{
+  constructor (){
   this.canvas = null;
   this.ctx = null;
   this.fireballs = [];
@@ -17,7 +18,7 @@ function Game() {
   this.audioGameOver = new Audio('./audio/gameover.wav');
 }
 
-Game.prototype.start = function () {
+start() {
   // Save reference to canvas and container. Create ctx
   this.canvasContainer = document.querySelector('.canvas-container');
   this.canvas = this.gameScreen.querySelector('canvas');
@@ -50,7 +51,7 @@ Game.prototype.start = function () {
   };
 
   // Add event listener for moving the player
-  //   var gameReference = this;
+  //   let gameReference = this;
   document.body.addEventListener(
     'keydown',
     this.handleKeyRight.bind(this)
@@ -65,8 +66,8 @@ Game.prototype.start = function () {
 };
 
 
-Game.prototype.startLoop = function () {
-  var loop = function () {
+startLoop() {
+  let loop = function () {
     // console.log('in loop');
     this.audio.play();
     // 1. UPDATE THE STATE OF PLAYER AND FIREBALLS / BALLS
@@ -75,15 +76,15 @@ Game.prototype.startLoop = function () {
 
     // 1. Create new fireballs randomly
     if (Math.random() > 0.986) {
-      var randomX = this.canvas.width * Math.random();
-      var newFireball = new Fireball(this.canvas, randomX, 5);
+      let randomX = this.canvas.width * Math.random();
+      let newFireball = new Fireball(this.canvas, randomX, 5);
       this.fireballs.push(newFireball);
     }
 
     // 1. Create new balls randomly
     if (Math.random() > 0.90) {
-      var randomX = this.canvas.width * Math.random();
-      var newBall = new Ball(this.canvas, randomX, 5);
+      let randomX = this.canvas.width * Math.random();
+      let newBall = new Ball(this.canvas, randomX, 5);
       this.balls.push(newBall);
     }
 
@@ -141,12 +142,12 @@ Game.prototype.startLoop = function () {
   //   // the `window` object- `window.requestAnimationFrame(loop)`
   //   // we have to bind the function so that value of `this` is
   //   // pointing to the `game` object, like this:
-  //   // var loop = (function(){}).bind(this);
+  //   // let loop = (function(){}).bind(this);
   window.requestAnimationFrame(loop);
 };
 
 
-Game.prototype.checkCollisions = function () {
+checkCollisions() {
 
   this.fireballs.forEach(function (fireball) {
 
@@ -221,17 +222,17 @@ Game.prototype.checkCollisions = function () {
   }, this);
 };
 
-Game.prototype.updateGameStats = function () {
+updateGameStats() {
   this.livesElement.innerHTML = this.player.lives;
   this.scoreElement.innerHTML = this.player.score;
 };
 
-Game.prototype.passGameOverCallback = function (callback) {
+passGameOverCallback(callback) {
   this.passGameOverCallback = callback;
   //callback = gameOver
 };
 
-Game.prototype.gameOver = function () {
+gameOver() {
   // flag `gameIsOver = true` stops the loop
   this.score = this.player.score
   // this.name = this.player.name
@@ -242,7 +243,9 @@ Game.prototype.gameOver = function () {
   this.passGameOverCallback();
 };
 
-Game.prototype.removeGameScreen = function () {
+removeGameScreen() {
   this.gameScreen.remove(); // remove() is the DOM method which removes the DOM Node  
   this.audio.pause();
+};
+
 };

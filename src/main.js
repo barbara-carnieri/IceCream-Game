@@ -1,22 +1,22 @@
 'use strict';
 
 // Creates DOM elements from a string representation
-function buildDom(htmlString) {
+const buildDom = htmlString => {
   var div = document.createElement('div');
   div.innerHTML = htmlString;
   return div.children[0];
 };
 
 // // Runs on initial start and contains calls all other functions that manage the game
-function main() {
-  var game;
-  var splashScreen;
-  var gameOverScreen;
-  var inputName;
+const main = () => {
+  let game;
+  let splashScreen;
+  let gameOverScreen;
+  let inputName;
 
   //   // -- splash screen
 
-  function createSplashScreen() {
+  const createSplashScreen = () => {
     removeGameOverScreen();
 
     splashScreen = buildDom(`
@@ -34,26 +34,26 @@ function main() {
 
     document.body.appendChild(splashScreen);
 
-    var startButton = splashScreen.querySelector('.btn-start');
+    let startButton = splashScreen.querySelector('.btn-start');
     // startButton.addEventListener('click', function(){
     //   console.log('start clicked!');
     // });
     startButton.addEventListener('click', saveData);
   };
 
-  function removeSplashScreen() {
+  const removeSplashScreen = () => {
     splashScreen.remove();
   };
 
   // -- save input name /score
-  function saveData() {
+  const saveData = () => {
     inputName = splashScreen.querySelector('.input-name').value;
     startGame();
   }
 
   //   // -- game screen
-  function createGameScreen() {
-    var gameScreen = buildDom(`
+  const createGameScreen = () => {
+    let gameScreen = buildDom(`
     <main class="game container">
       <header>
         <div class="lives">
@@ -82,7 +82,7 @@ function main() {
   };
 
   //   // -- game over screen
-  function createGameOverScreen(score, inputName) {
+  const createGameOverScreen = (score, inputName) => {
     gameOverScreen = buildDom(`
     <main class="gameover-container">
       <h1 class="gameover">GAME OVER</h1>
@@ -119,15 +119,15 @@ function main() {
   	</main>
   `);
 
-    var restartButton = gameOverScreen.querySelector('.btn-gameover');
+    let restartButton = gameOverScreen.querySelector('.btn-gameover');
     restartButton.addEventListener('click', createSplashScreen);
 
-    var spanScoreFinal = gameOverScreen.querySelector('#scorefinal');
+    let spanScoreFinal = gameOverScreen.querySelector('#scorefinal');
     spanScoreFinal.innerText = score;
-    var spanNameFinal = gameOverScreen.querySelector('#namefinal');
+    let spanNameFinal = gameOverScreen.querySelector('#namefinal');
     spanNameFinal.innerText = inputName;
 
-    var arrScores;
+    let arrScores;
 
     if (localStorage.getItem('arrScores') === null) {
       arrScores = [];
@@ -135,7 +135,7 @@ function main() {
       arrScores = JSON.parse(localStorage.getItem('arrScores'));
     }
 
-    var newPlayer = {
+    let newPlayer = {
       name: inputName,
       score: score
     };
@@ -143,32 +143,32 @@ function main() {
 
     localStorage.setItem('arrScores', JSON.stringify(arrScores));
     // localStorage.clear();
-    var ranking = JSON.parse(localStorage.getItem('arrScores'));
+    let ranking = JSON.parse(localStorage.getItem('arrScores'));
 
     ranking.sort(function (a, b) {
       return b.score - a.score
     });
 
-    for (var i = 0; i < ranking.length; i++) {
+    for (let i = 0; i < ranking.length; i++) {
       if (i < 5) {
         // console.log('#score' + (i + 1));
-        var score1 = gameOverScreen.querySelector('#score' + (i + 1));
+        let score1 = gameOverScreen.querySelector('#score' + (i + 1));
         score1.innerText = ranking[i].score;
-        var name1 = gameOverScreen.querySelector('#name' + (i + 1));
+        let name1 = gameOverScreen.querySelector('#name' + (i + 1));
         name1.innerText = ranking[i].name;
       }
     }
     document.body.appendChild(gameOverScreen);
   };
 
-  function removeGameOverScreen() {
+  const removeGameOverScreen = () => {
     if (gameOverScreen !== undefined) {
       gameOverScreen.remove();
     }
   };
 
   //   // -- Setting the game state 
-  function startGame() {
+  const startGame = () => {
     removeSplashScreen();
     removeGameOverScreen();
 
@@ -185,7 +185,7 @@ function main() {
     });
   };
 
-  function gameOver(score, inputName) {
+  const gameOver = (score, inputName) => {
     removeGameScreen();
     createGameOverScreen(score, inputName);
   };
