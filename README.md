@@ -1,5 +1,11 @@
 # IceCreamy Game
 
+### `Deploy Link`
+
+Open [https://barbara-carnieri.github.io/IceCream-Game/](https://barbara-carnieri.github.io/IceCream-Game/) to view it in the browser.
+
+![IceCreamyGame](/images/icecreamydemo.png)
+
 ## Description
 The IceCreamy Game, the player can move left and right and catch the icecreams scopes that are falling from the sky into his cone. Colorful balls increase the score and fire ball decreases it. The player has 3 lives, the fire ball removes 1 life each time touched by the player.
 
@@ -147,5 +153,3 @@ gameoverScreen / winScreen
 ## Git
 URls for the project repo and deploy <a href="https://github.com/barbara-carnieri/IceCream-Game">Link Repo</a> <a href="https://barbara-carnieri.github.io/IceCream-Game/">Link Deploy</a>
 
-## Slides
-<a href="https://docs.google.com/presentation/d/1x4XGkQkhz4wiEgKMI9L-tXDhDRoqIFdW2wjCJhGgHCE/edit?usp=sharing">Slides Link url</a>
